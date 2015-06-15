@@ -7,9 +7,18 @@
 
 #else  // If use MKL, simply include the MKL header
 
+#ifdef __APPLE__
+
+#include <Accelerate/Accelerate.h>
+
+#else
+
 extern "C" {
 #include <cblas.h>
 }
+
+#endif
+
 #include <math.h>
 
 // Functions that caffe uses but are not present if MKL is not linked.
