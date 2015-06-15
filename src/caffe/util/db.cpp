@@ -10,8 +10,10 @@ DB* GetDB(DataParameter::DB backend) {
   switch (backend) {
   case DataParameter_DB_LEVELDB:
     return new LevelDB();
+#ifdef LMDB
   case DataParameter_DB_LMDB:
     return new LMDB();
+#endif // LMDB
   default:
     LOG(FATAL) << "Unknown database backend";
   }
@@ -20,8 +22,10 @@ DB* GetDB(DataParameter::DB backend) {
 DB* GetDB(const string& backend) {
   if (backend == "leveldb") {
     return new LevelDB();
+#ifdef LMDB
   } else if (backend == "lmdb") {
     return new LMDB();
+#endif // LMDB
   } else {
     LOG(FATAL) << "Unknown database backend";
   }

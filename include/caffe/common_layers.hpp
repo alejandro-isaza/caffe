@@ -431,7 +431,7 @@ class ReductionLayer : public Layer<Dtype> {
       const vector<bool>& propagate_down, const vector<Blob<Dtype>*>& bottom);
 
   /// @brief the reduction operation performed by the layer
-  ReductionParameter_ReductionOp op_;
+  ReductionParameter::ReductionOp op_;
   /// @brief a scalar coefficient applied to all outputs
   Dtype coeff_;
   /// @brief the index of the first input axis to reduce

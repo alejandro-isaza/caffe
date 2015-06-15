@@ -88,6 +88,13 @@ docs/dev
 *.sst
 *.ldb
 LOCK
-LOG*
 CURRENT
 MANIFEST-*
+
+# Xcode per-user config
+*.mode1
+*.mode1v3
+*.mode2v3
+*.pbxuser
+xcuserdata/
+*.xccheckout
