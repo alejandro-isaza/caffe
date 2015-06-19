@@ -15,7 +15,7 @@ namespace caffe {
  */
 template <typename Dtype>
 class DataTransformer {
- public:
+public:
   explicit DataTransformer(const TransformationParameter& param, Phase phase);
   virtual ~DataTransformer() {}
 
@@ -48,7 +48,7 @@ class DataTransformer {
    *    set_cpu_data() is used. See memory_layer.cpp for an example.
    */
   void Transform(const vector<Datum> & datum_vector,
-                Blob<Dtype>* transformed_blob);
+                 Blob<Dtype>* transformed_blob);
 
   /**
    * @brief Applies the transformation defined in the data layer's
@@ -61,7 +61,7 @@ class DataTransformer {
    *    set_cpu_data() is used. See memory_layer.cpp for an example.
    */
   void Transform(const vector<cv::Mat> & mat_vector,
-                Blob<Dtype>* transformed_blob);
+                 Blob<Dtype>* transformed_blob);
 
   /**
    * @brief Applies the transformation defined in the data layer's
@@ -123,8 +123,8 @@ class DataTransformer {
    */
   vector<int> InferBlobShape(const cv::Mat& cv_img);
 
- protected:
-   /**
+protected:
+  /**
    * @brief Generates a random integer from Uniform({0, 1, ..., n-1}).
    *
    * @param n
@@ -148,4 +148,3 @@ class DataTransformer {
 }  // namespace caffe
 
 #endif  // CAFFE_DATA_TRANSFORMER_HPP_
-
