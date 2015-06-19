@@ -7,6 +7,7 @@
 #include "caffe/util/io.hpp"
 #include "caffe/util/math_functions.hpp"
 #include "caffe/util/rng.hpp"
+#include "caffe/util/fft.hpp"
 
 namespace caffe {
 
@@ -48,6 +49,7 @@ void DataTransformer<Dtype>::Transform(const Datum& datum,
   const bool has_mean_file = param_.has_mean_file();
   const bool has_uint8 = data.size() > 0;
   const bool has_mean_values = mean_values_.size() > 0;
+  const bool has_fft = param_.fft();
 
   CHECK_GT(datum_channels, 0);
   CHECK_GE(datum_height, crop_size);
@@ -69,6 +71,13 @@ void DataTransformer<Dtype>::Transform(const Datum& datum,
         mean_values_.push_back(mean_values_[0]);
       }
     }
+  }
+
+  auto floatData = datum.float_data();
+  std::vector<float> spectralData(floatData.size());
+  if (has_fft) {
+    caffe::FastFourierTransform fft(floatData.size());
+    fft.process(floatData.begin(), floatData.size(), &spectralData.front(), spectralData.size());
   }
 
   int height = datum_height;
@@ -100,7 +109,9 @@ void DataTransformer<Dtype>::Transform(const Datum& datum,
         } else {
           top_index = (c * height + h) * width + w;
         }
-        if (has_uint8) {
+        if (has_fft) {
+          datum_element = spectralData[data_index];
+        } else if (has_uint8) {
           datum_element =
             static_cast<Dtype>(static_cast<uint8_t>(data[data_index]));
         } else {
