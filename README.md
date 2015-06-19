@@ -19,6 +19,17 @@ Framework development discussions and thorough bug reports are collected on [Iss
 
 Happy brewing!
 
+
+## iOS
+
+This fork was modified to be compiled for iOS and OSX using Xcode. Here are some of the changes:
+
+* Added an Xcode project
+* Removed support for HDF5 and LMDB, only LevelDB is supported
+* Removed support for GPU mode, only CPU mode is supported
+* The project has no dependencies, all necessary libraries are included and scripts are provided to compile the latest version of each of the dependencies with iOS and OSX support
+
+
 ## License and Citation
 
 Caffe is released under the [BSD 2-Clause license](https://github.com/BVLC/caffe/blob/master/LICENSE).
