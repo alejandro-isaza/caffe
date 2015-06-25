@@ -119,23 +119,6 @@ inline bool ReadImageToDatum(const string& filename, const int label,
   return ReadImageToDatum(filename, label, 0, 0, true, encoding, datum);
 }
 
-bool DecodeDatumNative(Datum* datum);
-bool DecodeDatum(Datum* datum, bool is_color);
-
-cv::Mat ReadImageToCVMat(const string& filename,
-    const int height, const int width, const bool is_color);
-
-cv::Mat ReadImageToCVMat(const string& filename,
-    const int height, const int width);
-
-cv::Mat ReadImageToCVMat(const string& filename,
-    const bool is_color);
-
-cv::Mat ReadImageToCVMat(const string& filename);
-
-cv::Mat DecodeDatumToCVMatNative(const Datum& datum);
-cv::Mat DecodeDatumToCVMat(const Datum& datum, bool is_color);
-
 void CVMatToDatum(const cv::Mat& cv_img, Datum* datum);
 }  // namespace caffe
 

@@ -127,25 +127,12 @@ void DataTransformer<Dtype>::Transform(const Datum& datum,
 template<typename Dtype>
 void DataTransformer<Dtype>::Transform(const Datum& datum,
                                        Blob<Dtype>* transformed_blob) {
-  // If datum is encoded, decoded and transform the cv::image.
-  if (datum.encoded()) {
-    CHECK(!(param_.force_color() && param_.force_gray()))
-        << "cannot set both force_color and force_gray";
-    cv::Mat cv_img;
-    if (param_.force_color() || param_.force_gray()) {
-    // If force_color then decode in color otherwise decode in gray.
-      cv_img = DecodeDatumToCVMat(datum, param_.force_color());
-    } else {
-      cv_img = DecodeDatumToCVMatNative(datum);
-    }
-    // Transform the cv::image into blob.
-    return Transform(cv_img, transformed_blob);
-  } else {
-    if (param_.force_color() || param_.force_gray()) {
-      LOG(ERROR) << "force_color and force_gray only for encoded datum";
-    }
-  }
+  CHECK(!datum.encoded()) << "encoded datums not supported";
 
+  if (param_.force_color() || param_.force_gray()) {
+    LOG(ERROR) << "force_color and force_gray only for encoded datum";
+  }
+  
   const int crop_size = param_.crop_size();
   const int datum_channels = datum.channels();
   const int datum_height = datum.height();
@@ -431,19 +418,7 @@ void DataTransformer<Dtype>::Transform(Blob<Dtype>* input_blob,
 
 template<typename Dtype>
 vector<int> DataTransformer<Dtype>::InferBlobShape(const Datum& datum) {
-  if (datum.encoded()) {
-    CHECK(!(param_.force_color() && param_.force_gray()))
-        << "cannot set both force_color and force_gray";
-    cv::Mat cv_img;
-    if (param_.force_color() || param_.force_gray()) {
-    // If force_color then decode in color otherwise decode in gray.
-      cv_img = DecodeDatumToCVMat(datum, param_.force_color());
-    } else {
-      cv_img = DecodeDatumToCVMatNative(datum);
-    }
-    // InferBlobShape using the cv::image.
-    return InferBlobShape(cv_img);
-  }
+  CHECK(!datum.encoded()) << "encoded datums not supported";
 
   const int crop_size = param_.crop_size();
   const int datum_channels = datum.channels();
