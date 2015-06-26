@@ -327,6 +327,8 @@ class LIBPROTOBUF_EXPORT Descriptor {
   GOOGLE_DISALLOW_EVIL_CONSTRUCTORS(Descriptor);
 };
 
+#undef TYPE_BOOL
+
 // Describes a single field of a message.  To get the descriptor for a given
 // field, first get the Descriptor for the message in which it is defined,
 // then call Descriptor::FindFieldByName().  To get a FieldDescriptor for
