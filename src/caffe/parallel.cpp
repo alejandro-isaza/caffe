@@ -12,7 +12,7 @@
 #include <string>
 #include <vector>
 
-#include "boost/thread.hpp"
+#include "thread"
 #include "caffe/caffe.hpp"
 #include "caffe/parallel.hpp"
 

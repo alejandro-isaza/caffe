@@ -1,11 +1,11 @@
-#include <boost/thread.hpp>
+#include <thread>
 #include "caffe/layer.hpp"
 
 namespace caffe {
 
 template <typename Dtype>
 void Layer<Dtype>::InitMutex() {
-  forward_mutex_.reset(new boost::mutex());
+    forward_mutex_.reset(new std::mutex());
 }
 
 template <typename Dtype>

@@ -1,6 +1,4 @@
-#include <boost/thread.hpp>
-#include <exception>
-
+#include <thread>
 #include "caffe/internal_thread.hpp"
 #include "caffe/util/math_functions.hpp"
 
@@ -15,26 +13,17 @@ bool InternalThread::is_started() const {
 }
 
 bool InternalThread::must_stop() {
-  return thread_ && thread_->interruption_requested();
+  return thread_ && interrupt_;
 }
 
 void InternalThread::StartInternalThread() {
   CHECK(!is_started()) << "Threads should persist and not be restarted.";
 
-  int device = 0;
-#ifndef CPU_ONLY
-  CUDA_CHECK(cudaGetDevice(&device));
-#endif
-  Caffe::Brew mode = Caffe::mode();
-  int rand_seed = caffe_rng_rand();
-  int solver_count = Caffe::solver_count();
-  bool root_solver = Caffe::root_solver();
-
   try {
-    thread_.reset(new boost::thread(&InternalThread::entry, this, device, mode,
-          rand_seed, solver_count, root_solver));
-  } catch (std::exception& e) {
-    LOG(FATAL) << "Thread exception: " << e.what();
+    thread_.reset(
+        new std::thread(&InternalThread::InternalThreadEntry, this));
+  } catch (std::system_error&) {
+    return;
   }
 }
 
@@ -53,11 +42,10 @@ void InternalThread::entry(int device, Caffe::Brew mode, int rand_seed,
 
 void InternalThread::StopInternalThread() {
   if (is_started()) {
-    thread_->interrupt();
+      interrupt_ = true;
     try {
       thread_->join();
-    } catch (boost::thread_interrupted&) {
-    } catch (std::exception& e) {
+    } catch (std::system_error& e) {
       LOG(FATAL) << "Thread exception: " << e.what();
     }
   }

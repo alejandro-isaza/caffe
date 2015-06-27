@@ -1,4 +1,4 @@
-#include <boost/thread.hpp>
+#include <thread>
 #include <map>
 #include <string>
 #include <vector>
@@ -10,16 +10,16 @@
 
 namespace caffe {
 
-using boost::weak_ptr;
+using std::weak_ptr;
 
 map<const string, weak_ptr<DataReader::Body> > DataReader::bodies_;
-static boost::mutex bodies_mutex_;
+static std::mutex bodies_mutex_;
 
 DataReader::DataReader(const LayerParameter& param)
     : queue_pair_(new QueuePair(  //
         param.data_param().prefetch() * param.data_param().batch_size())) {
   // Get or create a body
-  boost::mutex::scoped_lock lock(bodies_mutex_);
+  std::unique_lock<std::mutex> lock(bodies_mutex_);
   string key = source_key(param);
   weak_ptr<Body>& weak = bodies_[key];
   body_ = weak.lock();
@@ -33,7 +33,7 @@ DataReader::DataReader(const LayerParameter& param)
 DataReader::~DataReader() {
   string key = source_key(body_->param_);
   body_.reset();
-  boost::mutex::scoped_lock lock(bodies_mutex_);
+  std::unique_lock<std::mutex> lock(bodies_mutex_);
   if (bodies_[key].expired()) {
     bodies_.erase(key);
   }
@@ -97,7 +97,7 @@ void DataReader::Body::InternalThreadEntry() {
       // name and same source.
       CHECK_EQ(new_queue_pairs_.size(), 0);
     }
-  } catch (boost::thread_interrupted&) {
+  } catch (std::system_error&) {
     // Interrupted exception is expected on shutdown
   }
 }

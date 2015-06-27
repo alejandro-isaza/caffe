@@ -1,7 +1,6 @@
 #ifndef CAFFE_LAYER_H_
 #define CAFFE_LAYER_H_
 
-#include <algorithm>
 #include <string>
 #include <vector>
 
@@ -432,7 +431,7 @@ class Layer {
   bool is_shared_;
 
   /** The mutex for sequential forward if this layer is shared */
-  shared_ptr<boost::mutex> forward_mutex_;
+  shared_ptr<std::mutex> forward_mutex_;
 
   /** Initialize forward_mutex_ */
   void InitMutex();
