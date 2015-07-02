@@ -74,10 +74,9 @@ void DataTransformer<Dtype>::Transform(const Datum& datum,
   }
 
   auto floatData = datum.float_data();
-  std::vector<float> spectralData(floatData.size());
   if (has_fft) {
     caffe::FastFourierTransform fft(floatData.size());
-    fft.process(floatData.begin(), floatData.size(), &spectralData.front(), spectralData.size());
+    fft.process(floatData.begin(), floatData.size());
   }
 
   int height = datum_height;
@@ -110,7 +109,7 @@ void DataTransformer<Dtype>::Transform(const Datum& datum,
           top_index = (c * height + h) * width + w;
         }
         if (has_fft) {
-          datum_element = spectralData[data_index];
+          datum_element = floatData.Get(data_index);
         } else if (has_uint8) {
           datum_element =
             static_cast<Dtype>(static_cast<uint8_t>(data[data_index]));

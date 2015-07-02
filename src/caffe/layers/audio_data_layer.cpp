@@ -45,6 +45,8 @@ void AudioDataLayer<Dtype>::DataLayerSetUp(const vector<Blob<Dtype>*>& bottom,
   }
   LOG(INFO) << "A total of " << lines_.size() << " files.";
 
+  lines_id_ = 0;
+
   Datum datum;
   datum.set_channels(1);
   datum.set_height(1);

@@ -9,7 +9,7 @@ class FastFourierTransform {
 public:
   FastFourierTransform(int packetSize);
   ~FastFourierTransform();
-  int process(const float* input, int size, float* output, int capacity);
+  int process(float* input, int size);
 
 private:
   const int _log2Size;
