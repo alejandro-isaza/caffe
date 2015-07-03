@@ -4,6 +4,7 @@
 #include <string>
 #include <utility>
 #include <vector>
+#include <tuple>
 
 #ifdef HDF5
 #include "hdf5.h"
@@ -270,6 +271,33 @@ class AudioDataLayer : public BasePrefetchingDataLayer<Dtype> {
   virtual void InternalThreadEntry();
 
   vector<std::pair<std::string, int> > lines_;
+  int lines_id_;
+};
+
+/**
+ * @brief Provides data to the Net from two audio files.
+ *
+ * TODO(dox): thorough documentation for Forward and proto params.
+ */
+template <typename Dtype>
+class DualSliceDataLayer : public BasePrefetchingDataLayer<Dtype> {
+public:
+  explicit DualSliceDataLayer(const LayerParameter& param)
+  : BasePrefetchingDataLayer<Dtype>(param) {}
+  virtual ~DualSliceDataLayer();
+  virtual void DataLayerSetUp(const vector<Blob<Dtype>*>& bottom,
+                              const vector<Blob<Dtype>*>& top);
+
+  virtual inline const char* type() const { return "DualSliceData"; }
+  virtual inline int ExactNumBottomBlobs() const { return 0; }
+  virtual inline int ExactNumTopBlobs() const { return 2; }
+
+protected:
+  shared_ptr<Caffe::RNG> prefetch_rng_;
+  virtual void ShuffleFiles();
+  virtual void InternalThreadEntry();
+
+  vector<std::tuple<std::string, std::string, int> > lines_;
   int lines_id_;
 };
 

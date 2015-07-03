@@ -13,6 +13,7 @@
 #include "caffe/util/math_functions.hpp"
 #include "caffe/util/rng.hpp"
 #include "caffe/util/read_audio.hpp"
+#include "caffe/util/fft.hpp"
 
 namespace caffe {
 
@@ -119,8 +120,14 @@ void AudioDataLayer<Dtype>::InternalThreadEntry() {
     datum.set_width(width);
     datum.set_label(lines_[lines_id_].second);
 
-    std::vector<float> tempData(width);
+    std::vector<float> tempData(width / 2);
     ReadAudioFile(root_folder + lines_[lines_id_].first, &tempData.front(), tempData.size());
+
+    if (this->layer_param_.audio_data_param().fft()) {
+      auto fft = FastFourierTransform(width);
+      fft.process(&tempData.front(), tempData.size());
+    }
+
     for (int i = 0; i < width; i++) {
       datum.add_float_data(tempData[i]);
     }
