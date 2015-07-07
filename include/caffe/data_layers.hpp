@@ -297,7 +297,7 @@ protected:
   virtual void ShuffleFiles();
   virtual void InternalThreadEntry();
 
-  vector<std::tuple<std::string, std::string, int> > lines_;
+  vector<std::tuple<std::string, std::string, int, int, int> > lines_;
   int lines_id_;
 };
 

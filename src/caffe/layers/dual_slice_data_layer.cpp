@@ -14,6 +14,7 @@
 #include "caffe/util/rng.hpp"
 #include "caffe/util/read_audio.hpp"
 #include "caffe/util/fft.hpp"
+#include "json/json.hpp"
 
 namespace caffe {
 
@@ -30,12 +31,13 @@ namespace caffe {
         // Read the file with filenames and labels
         const string& source = this->layer_param_.dual_slice_data_param().source();
         LOG(INFO) << "Opening file " << source;
-        std::ifstream infile(source.c_str());
-        string filename1;
-        string filename2;
-        int label;
-        while (infile >> filename1 >> filename2 >> label) {
-            lines_.push_back(std::make_tuple(filename1, filename2, label));
+
+        std::ifstream ifs(source.c_str());
+        nlohmann::json json;
+        json << ifs;
+
+        for (auto element : json) {
+            lines_.push_back(std::make_tuple<std::string, std::string, int, int, int>(element["file1"], element["file2"], element["label"], element["offset1"], element["offset2"]));
         }
 
         if (this->layer_param_.dual_slice_data_param().shuffle()) {
@@ -119,6 +121,7 @@ namespace caffe {
 
             const auto label = std::get<2>(lines_[lines_id_]);
             const auto fileNames = std::vector<std::string>{std::get<0>(lines_[lines_id_]), std::get<1>(lines_[lines_id_])};
+            const auto offsets = std::vector<int>{std::get<3>(lines_[lines_id_]), std::get<4>(lines_[lines_id_])};
 
             Datum datum;
             datum.set_channels(1);
@@ -128,8 +131,8 @@ namespace caffe {
 
             std::vector<float> tempData(singleFileWidth);
 
-            for (auto& fileName : fileNames) {
-                ReadAudioFile(root_folder + fileName, &tempData.front(), tempData.size());
+            for (int i = 0; i < 2; ++i) {
+                ReadAudioFile(root_folder + fileNames[i], &tempData.front(), tempData.size(), offsets[i]);
                 if (this->layer_param_.dual_slice_data_param().fft()) {
                     auto fft = FastFourierTransform(singleFileWidth);
                     fft.process(&tempData.front(), tempData.size());
