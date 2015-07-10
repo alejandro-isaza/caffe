@@ -125,7 +125,7 @@ void AudioDataLayer<Dtype>::InternalThreadEntry() {
 
     if (this->layer_param_.audio_data_param().fft()) {
       auto fft = FastFourierTransform(width);
-      fft.process(&tempData.front(), tempData.size());
+      fft.process(tempData.data(), tempData.size());
     }
 
     for (int i = 0; i < width; i++) {
