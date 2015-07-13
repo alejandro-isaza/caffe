@@ -3,6 +3,7 @@
 
 #include <string>
 #include <utility>
+#include <valarray>
 #include <vector>
 
 #ifdef HDF5
@@ -21,6 +22,14 @@
 #include "caffe/util/db.hpp"
 
 namespace caffe {
+
+struct AudioData {
+  std::string file1;
+  std::string file2;
+  int label;
+  int offset1;
+  int offset2;
+};
 
 /**
  * @brief Provides base for data layers that feed blobs to the Net.
@@ -287,6 +296,37 @@ class AudioDataLayer : public BasePrefetchingDataLayer<Dtype> {
   virtual void load_batch(Batch<Dtype>* batch);
 
   vector<std::pair<std::string, int> > lines_;
+  int lines_id_;
+};
+
+/**
+ * @brief Provides data to the Net from two audio files.
+ *
+ * TODO(dox): thorough documentation for Forward and proto params.
+ */
+template <typename Dtype>
+class DualSliceDataLayer : public BasePrefetchingDataLayer<Dtype> {
+public:
+  explicit DualSliceDataLayer(const LayerParameter& param)
+  : BasePrefetchingDataLayer<Dtype>(param) {}
+  virtual ~DualSliceDataLayer();
+  virtual void DataLayerSetUp(const vector<Blob<Dtype>*>& bottom,
+                              const vector<Blob<Dtype>*>& top);
+  void fetchFFTransformedData(const std::string& filename, float* data, int offset, int size);
+
+  virtual inline const char* type() const { return "DualSliceData"; }
+  virtual inline int ExactNumBottomBlobs() const { return 0; }
+  virtual inline int ExactNumTopBlobs() const { return 2; }
+
+protected:
+  shared_ptr<Caffe::RNG> prefetch_rng_;
+  virtual void ShuffleFiles();
+  virtual void load_batch(Batch<Dtype>* batch);
+  std::default_random_engine prng;
+  std::uniform_real_distribution<double> gainDistribution = std::uniform_real_distribution<double>(-1, 1);
+  std::uniform_int_distribution<int> shiftDistribution = std::uniform_int_distribution<int>(0, 4096);
+
+  vector<AudioData> lines_;
   int lines_id_;
 };
 
