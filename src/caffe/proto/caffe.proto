@@ -269,7 +269,7 @@ message ParamSpec {
 // NOTE
 // Update the next available ID when you add a new LayerParameter field.
 //
-// LayerParameter next available layer-specific ID: 138 (last added: audio_data_param)
+// LayerParameter next available layer-specific ID: 139 (last added: dual_slice_data_param)
 message LayerParameter {
   optional string name = 1; // the layer name
   optional string type = 2; // the layer type
@@ -324,6 +324,7 @@ message LayerParameter {
   optional ConvolutionParameter convolution_param = 106;
   optional DataParameter data_param = 107;
   optional DropoutParameter dropout_param = 108;
+  optional DualSliceDataParameter dual_slice_data_param = 138;
   optional DummyDataParameter dummy_data_param = 109;
   optional EltwiseParameter eltwise_param = 110;
   optional ExpParameter exp_param = 111;
@@ -375,8 +376,6 @@ message TransformationParameter {
   optional bool force_color = 6 [default = false];
   // Force the decoded image to have 1 color channels.
   optional bool force_gray = 7 [default = false];
-  // Perform FFT on bottom blob.
-  optional bool fft = 8 [default = false];
 }
 
 // Message that stores parameters shared by loss layers
@@ -424,6 +423,7 @@ message AudioDataParameter {
   // Whether or not ImageLayer should shuffle the list of files at every epoch.
   optional bool shuffle = 4 [default = false];
   optional string root_folder = 5 [default = ""];
+  optional bool fft = 6 [default = false];
 }
 
 message ConcatParameter {
@@ -518,6 +518,7 @@ required uint32 sample_count = 3;
 // Whether or not ImageLayer should shuffle the list of files at every epoch.
 optional bool shuffle = 4 [default = false];
 optional string root_folder = 5 [default = ""];
+optional bool fft = 6 [default = false];
 }
 
 // DummyDataLayer fills any number of arbitrarily shaped blobs with random

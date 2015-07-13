@@ -176,6 +176,7 @@ namespace caffe {
         }
     }
 
+    
     INSTANTIATE_CLASS(DualSliceDataLayer);
     REGISTER_LAYER_CLASS(DualSliceData);
     
