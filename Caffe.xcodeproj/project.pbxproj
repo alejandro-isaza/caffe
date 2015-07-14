@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		615031C91B27BD1400496218 /* caffe.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 61502FB41B27B78C00496218 /* caffe.cpp */; };
+		619DB3C81B55BEAE007640C1 /* mdb.c in Sources */ = {isa = PBXBuildFile; fileRef = 619DB3BC1B55BEAE007640C1 /* mdb.c */; };
+		619DB3CD1B55BEAE007640C1 /* midl.c in Sources */ = {isa = PBXBuildFile; fileRef = 619DB3C11B55BEAE007640C1 /* midl.c */; };
 		61DF54F91B334875000D5264 /* gflags.cc in Sources */ = {isa = PBXBuildFile; fileRef = 616E873D1B321296009CE299 /* gflags.cc */; };
 		61DF54FA1B334875000D5264 /* gflags_completions.cc in Sources */ = {isa = PBXBuildFile; fileRef = 616E873E1B321296009CE299 /* gflags_completions.cc */; };
 		61DF54FB1B334875000D5264 /* gflags_reporting.cc in Sources */ = {isa = PBXBuildFile; fileRef = 616E873F1B321296009CE299 /* gflags_reporting.cc */; };
@@ -84,18 +86,16 @@
 		61DF556E1B33492D000D5264 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 616E874B1B321572009CE299 /* Accelerate.framework */; };
 		61DF556F1B33492D000D5264 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 616E874B1B321572009CE299 /* Accelerate.framework */; };
 		61DF55731B334934000D5264 /* libglog.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6152820B1B32123600C759C7 /* libglog.a */; };
-		61DF55741B334934000D5264 /* libleveldb.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6152820C1B32123600C759C7 /* libleveldb.a */; };
 		61DF55751B334934000D5264 /* libprotobuf.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6152820D1B32123600C759C7 /* libprotobuf.a */; };
 		61DF55761B334934000D5264 /* libprotoc.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6152820E1B32123600C759C7 /* libprotoc.a */; };
 		61DF55781B334934000D5264 /* libglog.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6152820B1B32123600C759C7 /* libglog.a */; };
-		61DF55791B334934000D5264 /* libleveldb.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6152820C1B32123600C759C7 /* libleveldb.a */; };
 		61DF557A1B334934000D5264 /* libprotobuf.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6152820D1B32123600C759C7 /* libprotobuf.a */; };
 		61DF557B1B334934000D5264 /* libprotoc.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6152820E1B32123600C759C7 /* libprotoc.a */; };
 		61DF561E1B336302000D5264 /* libCaffe.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 61DF54E21B334815000D5264 /* libCaffe.a */; };
+		8CE62DFD1B3370800006C2AC /* fft.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8CE62DF81B3370520006C2AC /* fft.cpp */; };
 		8CE62E101B34839E0006C2AC /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CE62E0F1B34839E0006C2AC /* AudioToolbox.framework */; };
 		8CE62E141B3488F80006C2AC /* audio_data_layer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8CE62E121B3486D40006C2AC /* audio_data_layer.cpp */; };
 		8CE62E161B3489C10006C2AC /* read_audio.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8CE62E0C1B3483720006C2AC /* read_audio.cpp */; };
-		8CE62DFD1B3370800006C2AC /* fft.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8CE62DF81B3370520006C2AC /* fft.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXBuildRule section */
@@ -448,7 +448,6 @@
 		6150335B1B2F768C00496218 /* db_leveldb.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = db_leveldb.cpp; sourceTree = "<group>"; };
 		6150335C1B2F768C00496218 /* db_lmdb.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = db_lmdb.cpp; sourceTree = "<group>"; };
 		6152820B1B32123600C759C7 /* libglog.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libglog.a; sourceTree = "<group>"; };
-		6152820C1B32123600C759C7 /* libleveldb.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libleveldb.a; sourceTree = "<group>"; };
 		6152820D1B32123600C759C7 /* libprotobuf.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libprotobuf.a; sourceTree = "<group>"; };
 		6152820E1B32123600C759C7 /* libprotoc.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libprotoc.a; sourceTree = "<group>"; };
 		616E873D1B321296009CE299 /* gflags.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = gflags.cc; sourceTree = "<group>"; };
@@ -457,6 +456,8 @@
 		616E87401B321296009CE299 /* mutex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mutex.h; sourceTree = "<group>"; };
 		616E87411B321296009CE299 /* util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = util.h; sourceTree = "<group>"; };
 		616E874B1B321572009CE299 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.3.sdk/System/Library/Frameworks/Accelerate.framework; sourceTree = DEVELOPER_DIR; };
+		619DB3BC1B55BEAE007640C1 /* mdb.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mdb.c; sourceTree = "<group>"; };
+		619DB3C11B55BEAE007640C1 /* midl.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = midl.c; sourceTree = "<group>"; };
 		61DF495D1B30DC9C0079E197 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		61DF495E1B30DC9C0079E197 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		61DF495F1B30DC9C0079E197 /* UniversalFramework_Base.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = UniversalFramework_Base.xcconfig; sourceTree = "<group>"; };
@@ -496,12 +497,12 @@
 		61DF56421B336D70000D5264 /* rng.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = rng.hpp; sourceTree = "<group>"; };
 		61DF56431B336D70000D5264 /* upgrade_proto.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = upgrade_proto.hpp; sourceTree = "<group>"; };
 		61DF56441B336D70000D5264 /* vision_layers.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = vision_layers.hpp; sourceTree = "<group>"; };
+		8CAAB5181B336F4C004F5C5B /* fft.hpp */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.cpp.h; path = fft.hpp; sourceTree = "<group>"; tabWidth = 2; };
+		8CE62DF81B3370520006C2AC /* fft.cpp */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.cpp.cpp; path = fft.cpp; sourceTree = "<group>"; tabWidth = 2; };
 		8CE62E0C1B3483720006C2AC /* read_audio.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = read_audio.cpp; sourceTree = "<group>"; };
 		8CE62E0E1B3483830006C2AC /* read_audio.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = read_audio.hpp; sourceTree = "<group>"; };
 		8CE62E0F1B34839E0006C2AC /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		8CE62E121B3486D40006C2AC /* audio_data_layer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = audio_data_layer.cpp; sourceTree = "<group>"; };
-		8CAAB5181B336F4C004F5C5B /* fft.hpp */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.cpp.h; path = fft.hpp; sourceTree = "<group>"; tabWidth = 2; };
-		8CE62DF81B3370520006C2AC /* fft.cpp */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.cpp.cpp; path = fft.cpp; sourceTree = "<group>"; tabWidth = 2; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -511,7 +512,6 @@
 			files = (
 				61DF561E1B336302000D5264 /* libCaffe.a in Frameworks */,
 				61DF55781B334934000D5264 /* libglog.a in Frameworks */,
-				61DF55791B334934000D5264 /* libleveldb.a in Frameworks */,
 				61DF557A1B334934000D5264 /* libprotobuf.a in Frameworks */,
 				61DF557B1B334934000D5264 /* libprotoc.a in Frameworks */,
 				61DF556F1B33492D000D5264 /* Accelerate.framework in Frameworks */,
@@ -524,7 +524,6 @@
 			files = (
 				8CE62E101B34839E0006C2AC /* AudioToolbox.framework in Frameworks */,
 				61DF55731B334934000D5264 /* libglog.a in Frameworks */,
-				61DF55741B334934000D5264 /* libleveldb.a in Frameworks */,
 				61DF55751B334934000D5264 /* libprotobuf.a in Frameworks */,
 				61DF55761B334934000D5264 /* libprotoc.a in Frameworks */,
 				61DF556E1B33492D000D5264 /* Accelerate.framework in Frameworks */,
@@ -565,6 +564,7 @@
 		61502EFD1B27B78B00496218 /* src */ = {
 			isa = PBXGroup;
 			children = (
+				619DB3BB1B55BEAE007640C1 /* liblmdb */,
 				616E873C1B321296009CE299 /* gflags */,
 				61502EFE1B27B78B00496218 /* caffe */,
 				61502FAE1B27B78C00496218 /* gtest */,
@@ -1143,7 +1143,6 @@
 				616E874B1B321572009CE299 /* Accelerate.framework */,
 				8CE62E0F1B34839E0006C2AC /* AudioToolbox.framework */,
 				6152820B1B32123600C759C7 /* libglog.a */,
-				6152820C1B32123600C759C7 /* libleveldb.a */,
 				6152820D1B32123600C759C7 /* libprotobuf.a */,
 				6152820E1B32123600C759C7 /* libprotoc.a */,
 			);
@@ -1160,6 +1159,15 @@
 				616E87411B321296009CE299 /* util.h */,
 			);
 			path = gflags;
+			sourceTree = "<group>";
+		};
+		619DB3BB1B55BEAE007640C1 /* liblmdb */ = {
+			isa = PBXGroup;
+			children = (
+				619DB3BC1B55BEAE007640C1 /* mdb.c */,
+				619DB3C11B55BEAE007640C1 /* midl.c */,
+			);
+			path = liblmdb;
 			sourceTree = "<group>";
 		};
 		61DF495C1B30DC9B0079E197 /* xcconfigs */ = {
@@ -1331,6 +1339,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				615031C91B27BD1400496218 /* caffe.cpp in Sources */,
+				619DB3C81B55BEAE007640C1 /* mdb.c in Sources */,
+				619DB3CD1B55BEAE007640C1 /* midl.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

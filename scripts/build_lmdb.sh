@@ -15,9 +15,9 @@ if [ -d "${PREFIX}/platform" ]; then
 fi
 mkdir -p "${PREFIX}/platform"
 
-LMDB_VERSION=0.9.14
-LMDB_RELEASE_URL=https://gitorious.org/mdb/mdb/archive/2f587ae081d076e3707360c5db086520c219d3ea.tar.gz
-LMDB_RELEASE_DIRNAME=mdb-mdb
+LMDB_VERSION=0.9.15
+LMDB_RELEASE_URL=https://github.com/LMDB/lmdb/archive/LMDB_${LMDB_VERSION}.tar.gz
+LMDB_RELEASE_DIRNAME=lmdb-LMDB_${LMDB_VERSION}
 
 LMDB_SRC_DIR=/tmp/lmdb
 
@@ -83,7 +83,7 @@ echo "$(tput sgr0)"
     cp mdb.c midl.c ${PREFIX}/src/liblmdb
 
     mkdir -p ${PREFIX}/include
-    cp mdb.h midl.h ${PREFIX}/include
+    cp lmdb.h midl.h ${PREFIX}/include
 )
 
 echo Done!
