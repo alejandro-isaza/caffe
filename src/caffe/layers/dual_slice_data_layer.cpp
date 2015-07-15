@@ -171,7 +171,7 @@ namespace caffe {
         ReadAudioFile(filename, data, size, offset);
 
         if (this->layer_param_.dual_slice_data_param().fft()) {
-            auto fft = FastFourierTransform(size);
+            auto fft = FastFourierTransform(size, this->layer_param_.dual_slice_data_param().fft_options());
             fft.process(data, size);
         }
     }
