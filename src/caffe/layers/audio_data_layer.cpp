@@ -128,7 +128,7 @@ void AudioDataLayer<Dtype>::load_batch(Batch<Dtype>* batch) {
     ReadAudioFile(root_folder + lines_[lines_id_].first, &tempData.front(), tempData.size());
 
     if (this->layer_param_.audio_data_param().fft()) {
-      auto fft = FastFourierTransform(width);
+      auto fft = FastFourierTransform(width, this->layer_param_.audio_data_param().fft_options());
       fft.process(&tempData.front(), tempData.size());
     }
 

@@ -458,6 +458,7 @@ message AudioDataParameter {
   optional bool shuffle = 4 [default = false];
   optional string root_folder = 5 [default = ""];
   optional bool fft = 6 [default = false];
+  optional FFTOptions fft_options = 7;
 }
 
 message ConcatParameter {
@@ -547,16 +548,17 @@ message DropoutParameter {
 }
 
 message DualSliceDataParameter {
-// Specify the data source.
-required string source = 1;
-// Specify the batch size.
-optional uint32 batch_size = 2;
-// Specify number of samples.
-required uint32 sample_count = 3;
-// Whether or not ImageLayer should shuffle the list of files at every epoch.
-optional bool shuffle = 4 [default = false];
-optional string root_folder = 5 [default = ""];
-optional bool fft = 6 [default = false];
+  // Specify the data source.
+  required string source = 1;
+  // Specify the batch size.
+  optional uint32 batch_size = 2;
+  // Specify number of samples.
+  required uint32 sample_count = 3;
+  // Whether or not ImageLayer should shuffle the list of files at every epoch.
+  optional bool shuffle = 4 [default = false];
+  optional string root_folder = 5 [default = ""];
+  optional bool fft = 6 [default = false];
+  optional FFTOptions fft_options = 7;
 }
 
 // DummyDataLayer fills any number of arbitrarily shaped blobs with random
@@ -1206,4 +1208,11 @@ message PReLUParameter {
   optional FillerParameter filler = 1;
   // Whether or not slope paramters are shared across channels.
   optional bool channel_shared = 2 [default = false];
+}
+
+message FFTOptions {
+  optional bool norm = 1 [default = false];
+  optional float scale = 2 [default = 1];
+  optional bool decib = 3 [default = false];
+  optional bool polar = 4 [default = false];
 }
