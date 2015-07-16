@@ -41,21 +41,26 @@ int FastFourierTransform::process(float* data, int size) {
     applyDB(inputBuffer, outputBuffer, _packetSize);
     std::swap(inputBuffer, outputBuffer);
   }
+
   if (_options.norm()) {
     applyNorm(inputBuffer, outputBuffer, _packetSize);
     std::swap(inputBuffer, outputBuffer);
   }
+
   if (_options.scale() != 1) {
     applyScale(inputBuffer, outputBuffer, _options.scale(), _packetSize);
     std::swap(inputBuffer, outputBuffer);
   }
+
   if (_options.polar()) {
     splitData.realp = inputBuffer;
     splitData.imagp = inputBuffer + _packetSize/2;
     applyMagPhase(&splitData, outputBuffer, _packetSize);
+    std::swap(inputBuffer, outputBuffer);
   }
-  if (outputBuffer != data) {
-    std::move(outputBuffer, outputBuffer + _packetSize, data);
+
+  if (inputBuffer != data) {
+    std::move(inputBuffer, inputBuffer + _packetSize, data);
   }
   
   return _packetSize;
@@ -77,7 +82,7 @@ void FastFourierTransform::applyScale(float* input, float* output, float scale, 
 }
   
 void FastFourierTransform::applyDB(float* input, float* output, int size) {
-  auto zero = 0.0f;
+  auto zero = 1.0f;
   vDSP_vdbcon(input, 1, &zero, output, 1, size, 0);
 }
 
