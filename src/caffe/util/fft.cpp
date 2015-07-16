@@ -7,7 +7,6 @@
 
 namespace caffe {
   
-  
 FastFourierTransform::FastFourierTransform(int packetSize, FFTOptions options)
 : _log2Size(std::ceil(std::log2(packetSize))), _packetSize(static_cast<int>(std::exp2(_log2Size))),
   _window(packetSize),
@@ -36,11 +35,6 @@ int FastFourierTransform::process(float* data, int size) {
   
   float* inputBuffer = std::begin(_buffer);
   float* outputBuffer = data;
-  
-  if (_options.decib()) {
-    applyDB(inputBuffer, outputBuffer, _packetSize);
-    std::swap(inputBuffer, outputBuffer);
-  }
 
   if (_options.norm()) {
     applyNorm(inputBuffer, outputBuffer, _packetSize);
@@ -57,6 +51,15 @@ int FastFourierTransform::process(float* data, int size) {
     splitData.imagp = inputBuffer + _packetSize/2;
     applyMagPhase(&splitData, outputBuffer, _packetSize);
     std::swap(inputBuffer, outputBuffer);
+
+    if (_options.decib()) {
+      applyDB(inputBuffer, outputBuffer, _packetSize/2);
+
+      // Mmove the phases without chaning them
+      std::move(inputBuffer + _packetSize/2, inputBuffer + _packetSize, outputBuffer + _packetSize/2);
+
+      std::swap(inputBuffer, outputBuffer);
+    }
   }
 
   if (inputBuffer != data) {
@@ -82,8 +85,8 @@ void FastFourierTransform::applyScale(float* input, float* output, float scale, 
 }
   
 void FastFourierTransform::applyDB(float* input, float* output, int size) {
-  auto zero = 1.0f;
-  vDSP_vdbcon(input, 1, &zero, output, 1, size, 0);
+  auto zeroRef = 0.0f;
+  vDSP_vdbcon(input, 1, &zeroRef, output, 1, size, 1);
 }
 
 } // namespace caffe
