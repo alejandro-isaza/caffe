@@ -5,6 +5,7 @@
 #include <utility>
 #include <valarray>
 #include <vector>
+#include <random>
 
 #ifdef HDF5
 #include "hdf5.h"
@@ -312,7 +313,7 @@ public:
   virtual ~DualSliceDataLayer();
   virtual void DataLayerSetUp(const vector<Blob<Dtype>*>& bottom,
                               const vector<Blob<Dtype>*>& top);
-  void fetchFFTransformedData(const std::string& filename, float* data, int offset, int size);
+  void fetchFFTransformedData(const std::string& filename, float* data, int offset, float gain, int size);
 
   virtual inline const char* type() const { return "DualSliceData"; }
   virtual inline int ExactNumBottomBlobs() const { return 0; }
