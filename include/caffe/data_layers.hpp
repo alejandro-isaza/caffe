@@ -5,6 +5,7 @@
 #include <utility>
 #include <valarray>
 #include <vector>
+#include <random>
 
 #ifdef HDF5
 #include "hdf5.h"
@@ -295,7 +296,7 @@ public:
   virtual ~DualSliceDataLayer();
   virtual void DataLayerSetUp(const vector<Blob<Dtype>*>& bottom,
                               const vector<Blob<Dtype>*>& top);
-  void fetchFFTransformedData(const std::string& filename, float* data, int offset, int size);
+  void fetchFFTransformedData(const std::string& filename, float* data, int offset, float gain, int size);
 
   virtual inline const char* type() const { return "DualSliceData"; }
   virtual inline int ExactNumBottomBlobs() const { return 0; }
@@ -305,6 +306,9 @@ protected:
   shared_ptr<Caffe::RNG> prefetch_rng_;
   virtual void ShuffleFiles();
   virtual void InternalThreadEntry();
+  std::default_random_engine prng;
+  std::uniform_real_distribution<double> gainDistribution = std::uniform_real_distribution<double>(-1, 1);
+  std::uniform_int_distribution<int> shiftDistribution = std::uniform_int_distribution<int>(0, 4096);
 
   vector<AudioData> lines_;
   int lines_id_;

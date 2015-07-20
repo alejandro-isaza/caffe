@@ -127,7 +127,9 @@ namespace caffe {
 
             const auto label = lines_[lines_id_].label;
             const auto fileNames = std::vector<std::string>{lines_[lines_id_].file1, lines_[lines_id_].file2};
-            const auto offsets = std::vector<int>{lines_[lines_id_].offset1, lines_[lines_id_].offset2};
+            const auto offsets = std::vector<int>{lines_[lines_id_].offset1 + shiftDistribution(prng), lines_[lines_id_].offset2 + shiftDistribution(prng)};
+            const auto gain = std::exp(gainDistribution(prng));
+            
 
             Datum datum;
             datum.set_channels(1);
@@ -137,8 +139,8 @@ namespace caffe {
 
             datum.mutable_float_data()->Resize(width * height, 0);
             auto data = datum.mutable_float_data()->mutable_data();
-            fetchFFTransformedData(root_folder + fileNames[0], data, offsets[0], sample_count);
-            fetchFFTransformedData(root_folder + fileNames[1], data + sample_count, offsets[1], sample_count);
+            fetchFFTransformedData(root_folder + fileNames[0], data, offsets[0], gain, sample_count);
+            fetchFFTransformedData(root_folder + fileNames[1], data + sample_count, offsets[1], gain, sample_count);
 
             read_time += timer.MicroSeconds();
             timer.Start();
@@ -167,8 +169,9 @@ namespace caffe {
     }
 
     template <typename Dtype>
-    void DualSliceDataLayer<Dtype>::fetchFFTransformedData(const std::string& filename, float* data, int offset, int size) {
+    void DualSliceDataLayer<Dtype>::fetchFFTransformedData(const std::string& filename, float* data, int offset, float gain, int size) {
         ReadAudioFile(filename, data, size, offset);
+        vDSP_vsmul(data, 1, &gain, data, 1, size);
 
         if (this->layer_param_.dual_slice_data_param().fft()) {
             auto fft = FastFourierTransform(size, this->layer_param_.dual_slice_data_param().fft_options());
