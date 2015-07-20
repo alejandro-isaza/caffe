@@ -80,6 +80,10 @@ void Solver<Dtype>::InitTrainNet() {
   net_state.MergeFrom(param_.train_state());
   net_param.mutable_state()->CopyFrom(net_state);
   net_.reset(new Net<Dtype>(net_param));
+  
+  if (param_.has_trained_layers()) {
+    net_->CopyTrainedLayersFrom(param_.trained_layers());
+  }
 }
 
 template <typename Dtype>
