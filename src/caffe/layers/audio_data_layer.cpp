@@ -93,7 +93,7 @@ void AudioDataLayer<Dtype>::load_batch(Batch<Dtype>* batch) {
   AudioDataParameter audio_data_param = this->layer_param_.audio_data_param();
   const int batch_size = audio_data_param.batch_size();
   string root_folder = audio_data_param.root_folder();
-  auto width = this->layer_param_.audio_data_param().width();
+  auto width = static_cast<int>(this->layer_param_.audio_data_param().width());
 
   Datum datum;
   datum.set_channels(1);
@@ -118,29 +118,22 @@ void AudioDataLayer<Dtype>::load_batch(Batch<Dtype>* batch) {
     // get a blob
     timer.Start();
 
-    Datum datum;
-    datum.set_channels(1);
-    datum.set_height(1);
-    datum.set_width(width);
-    datum.set_label(lines_[lines_id_].second);
+    Blob<Dtype> blob({1, 1, 1, width});
+    auto data = blob.mutable_cpu_data();
 
-    std::vector<float> tempData(width / 2);
-    ReadAudioFile(root_folder + lines_[lines_id_].first, &tempData.front(), tempData.size());
+    ReadAudioFile(root_folder + lines_[lines_id_].first, data, width);
 
     if (this->layer_param_.audio_data_param().fft()) {
-      auto fft = FastFourierTransform(width, this->layer_param_.audio_data_param().fft_options());
-      fft.process(&tempData.front(), tempData.size());
+      auto fft = FastFourierTransform<Dtype>(width, this->layer_param_.audio_data_param().fft_options());
+      fft.process(data, width);
     }
 
-    for (int i = 0; i < width; i++) {
-      datum.add_float_data(tempData[i]);
-    }
     read_time += timer.MicroSeconds();
     timer.Start();
     // Apply transformations to the audio
     int offset = batch->data_.offset(item_id);
     this->transformed_data_.set_cpu_data(prefetch_data + offset);
-    this->data_transformer_->Transform(datum, &(this->transformed_data_));
+    this->data_transformer_->Transform(&blob, &(this->transformed_data_));
     trans_time += timer.MicroSeconds();
 
     prefetch_label[item_id] = lines_[lines_id_].second;
