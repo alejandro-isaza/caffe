@@ -9,6 +9,7 @@
 #include "caffe/data_layers.hpp"
 #include "caffe/layer.hpp"
 #include "caffe/util/benchmark.hpp"
+#include "caffe/util/dsp.hpp"
 #include "caffe/util/io.hpp"
 #include "caffe/util/math_functions.hpp"
 #include "caffe/util/rng.hpp"
@@ -101,7 +102,7 @@ namespace caffe {
         const int batch_size = dual_slice_data_param.batch_size();
         string root_folder = dual_slice_data_param.root_folder();
         const auto sample_count = this->layer_param_.dual_slice_data_param().sample_count();
-        const auto width = sample_count;
+        const auto width = static_cast<int>(sample_count);
         const auto height = 2;
 
         Datum datum;
@@ -130,15 +131,9 @@ namespace caffe {
             const auto offsets = std::vector<int>{lines_[lines_id_].offset1 + shiftDistribution(prng), lines_[lines_id_].offset2 + shiftDistribution(prng)};
             const auto gain = std::exp(gainDistribution(prng));
             
+            Blob<Dtype> blob({1, 1, height, width});
+            auto data = blob.mutable_cpu_data();
 
-            Datum datum;
-            datum.set_channels(1);
-            datum.set_height(height);
-            datum.set_width(width);
-            datum.set_label(label);
-
-            datum.mutable_float_data()->Resize(width * height, 0);
-            auto data = datum.mutable_float_data()->mutable_data();
             fetchFFTransformedData(root_folder + fileNames[0], data, offsets[0], gain, sample_count);
             fetchFFTransformedData(root_folder + fileNames[1], data + sample_count, offsets[1], gain, sample_count);
 
@@ -147,7 +142,7 @@ namespace caffe {
             // Apply transformations to the audio
             int offset = this->prefetch_data_.offset(item_id);
             this->transformed_data_.set_cpu_data(prefetch_data + offset);
-            this->data_transformer_->Transform(datum, &(this->transformed_data_));
+            this->data_transformer_->Transform(&blob, &(this->transformed_data_));
             trans_time += timer.MicroSeconds();
             
             prefetch_label[item_id] = label;
@@ -169,12 +164,12 @@ namespace caffe {
     }
 
     template <typename Dtype>
-    void DualSliceDataLayer<Dtype>::fetchFFTransformedData(const std::string& filename, float* data, int offset, float gain, int size) {
+    void DualSliceDataLayer<Dtype>::fetchFFTransformedData(const std::string& filename, Dtype* data, int offset, Dtype gain, int size) {
         ReadAudioFile(filename, data, size, offset);
-        vDSP_vsmul(data, 1, &gain, data, 1, size);
+        dsp::vsmul(data, 1, &gain, data, 1, size);
 
         if (this->layer_param_.dual_slice_data_param().fft()) {
-            auto fft = FastFourierTransform(size, this->layer_param_.dual_slice_data_param().fft_options());
+            auto fft = FastFourierTransform<Dtype>(size, this->layer_param_.dual_slice_data_param().fft_options());
             fft.process(data, size);
         }
     }

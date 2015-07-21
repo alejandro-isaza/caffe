@@ -6,35 +6,38 @@
 #include "caffe/util/fft.hpp"
 
 namespace caffe {
-  
-FastFourierTransform::FastFourierTransform(int packetSize, FFTOptions options)
+
+template <typename Dtype>
+FastFourierTransform<Dtype>::FastFourierTransform(dsp::Length packetSize, FFTOptions options)
 : _log2Size(std::ceil(std::log2(packetSize))), _packetSize(static_cast<int>(std::exp2(_log2Size))),
   _window(packetSize),
   _buffer(packetSize),
   _options(options)
 {
-  _setup = vDSP_create_fftsetup(_log2Size, kFFTRadix2);
-  vDSP_hamm_window(std::begin(_window), _packetSize, 0);
+  _setup = dsp::create_fftsetup<Dtype>(_log2Size, dsp::FFTRadix::Radix2);
+  dsp::hamm_window(std::begin(_window), _packetSize, 0);
 }
 
-FastFourierTransform::~FastFourierTransform() {
-  vDSP_destroy_fftsetup(_setup);
+template <typename Dtype>
+FastFourierTransform<Dtype>::~FastFourierTransform() {
+  dsp::destroy_fftsetup(_setup);
 }
 
-int FastFourierTransform::process(float* data, int size) {
+template <typename Dtype>
+int FastFourierTransform<Dtype>::process(Dtype* data, dsp::Length size) {
   CHECK_EQ(size, _packetSize);
 
-  vDSP_vmul(data, 1, std::begin(_window), 1, data, 1, size);
+  dsp::vmul(data, 1, std::begin(_window), 1, data, 1, size);
 
-  DSPSplitComplex splitData;
+  dsp::SplitComplex<Dtype> splitData;
   splitData.realp = std::begin(_buffer);
   splitData.imagp = std::begin(_buffer) + _packetSize/2;
-  vDSP_ctoz(reinterpret_cast<const DSPComplex*>(data), 2, &splitData, 1, _packetSize/2);
+  dsp::ctoz(reinterpret_cast<const dsp::Complex<Dtype>*>(data), 2, &splitData, 1, _packetSize/2);
 
-  vDSP_fft_zrip(_setup, &splitData, 1, _log2Size, kFFTDirection_Forward);
+  dsp::fft_zrip(_setup, &splitData, 1, _log2Size, dsp::FFTDirection::Forward);
   
-  float* inputBuffer = std::begin(_buffer);
-  float* outputBuffer = data;
+  Dtype* inputBuffer = std::begin(_buffer);
+  Dtype* outputBuffer = data;
 
   if (_options.norm()) {
     applyNorm(inputBuffer, outputBuffer, _packetSize);
@@ -69,24 +72,30 @@ int FastFourierTransform::process(float* data, int size) {
   return _packetSize;
 }
 
-void FastFourierTransform::applyMagPhase(DSPSplitComplex* input, float* output, int size) {
-  vDSP_zvmags(input, 1, output, 1, size/2);
-  vDSP_zvphas(input, 1, output + size/2, 1, size/2);
-}
-  
-void FastFourierTransform::applyNorm(float* input, float* output, int size) {
-  auto mean = 0.0f;
-  auto sd = 1.0f;
-  vDSP_normalize(input, 1, output, 1, &mean, &sd, size);
+template <typename Dtype>
+void FastFourierTransform<Dtype>::applyMagPhase(dsp::SplitComplex<Dtype>* input, Dtype* output, dsp::Length size) {
+  dsp::zvmags(input, 1, output, 1, size/2);
+  dsp::zvphas(input, 1, output + size/2, 1, size/2);
 }
 
-void FastFourierTransform::applyScale(float* input, float* output, float scale, int size) {
-  vDSP_vsmul(input, 1, &scale, output, 1, size);
+template <typename Dtype>
+void FastFourierTransform<Dtype>::applyNorm(Dtype* input, Dtype* output, dsp::Length size) {
+  auto mean = Dtype(0);
+  auto sd = Dtype(1);
+  dsp::normalize(input, 1, output, 1, &mean, &sd, size);
 }
-  
-void FastFourierTransform::applyDB(float* input, float* output, int size) {
-  auto zeroRef = 0.0f;
-  vDSP_vdbcon(input, 1, &zeroRef, output, 1, size, 1);
+
+template <typename Dtype>
+void FastFourierTransform<Dtype>::applyScale(Dtype* input, Dtype* output, Dtype scale, dsp::Length size) {
+  dsp::vsmul(input, 1, &scale, output, 1, size);
 }
+
+template <typename Dtype>
+void FastFourierTransform<Dtype>::applyDB(Dtype* input, Dtype* output, dsp::Length size) {
+  auto zeroRef = Dtype(0);
+  dsp::vdbcon(input, 1, &zeroRef, output, 1, size, 1);
+}
+
+INSTANTIATE_CLASS(FastFourierTransform);
 
 } // namespace caffe

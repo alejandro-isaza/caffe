@@ -2,31 +2,35 @@
 #define CAFFE_UTIL_FFT_HPP
 
 #include <valarray>
-#include <Accelerate/Accelerate.h>
 
+#include "caffe/util/dsp.hpp"
 #include "caffe/proto/caffe.pb.h"
+
 
 namespace caffe {
 
-  
+template <typename Dtype>
 class FastFourierTransform {
 public:
-  FastFourierTransform(int packetSize, FFTOptions options);
+  FastFourierTransform(dsp::Length packetSize, FFTOptions options);
   ~FastFourierTransform();
-  int process(float* data, int size);
+
+  int process(Dtype* data, dsp::Length size);
+
 private:
-  void applyMagPhase(DSPSplitComplex* input, float* output, int size);
-  void applyNorm(float* input, float* output, int size);
-  void applyScale(float* input, float* output, float scale, int size);
-  void applyDB(float* input, float* output, int size);
+  void applyMagPhase(dsp::SplitComplex<Dtype>* input, Dtype* output, dsp::Length size);
+  void applyNorm(Dtype* input, Dtype* output, dsp::Length size);
+  void applyScale(Dtype* input, Dtype* output, Dtype scale, dsp::Length size);
+  void applyDB(Dtype* input, Dtype* output, dsp::Length size);
   
 private:
-  const int _log2Size;
-  const int _packetSize;
-  FFTSetup _setup;
+  const dsp::Length _log2Size;
+  const dsp::Length _packetSize;
+
+  dsp::FFTSetup<Dtype> _setup;
   FFTOptions _options;
-  std::valarray<float> _window;
-  std::valarray<float> _buffer;
+  std::valarray<Dtype> _window;
+  std::valarray<Dtype> _buffer;
 };
 
 } // namespace caffe

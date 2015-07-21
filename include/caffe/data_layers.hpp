@@ -296,7 +296,7 @@ public:
   virtual ~DualSliceDataLayer();
   virtual void DataLayerSetUp(const vector<Blob<Dtype>*>& bottom,
                               const vector<Blob<Dtype>*>& top);
-  void fetchFFTransformedData(const std::string& filename, float* data, int offset, float gain, int size);
+  void fetchFFTransformedData(const std::string& filename, Dtype* data, int offset, Dtype gain, int size);
 
   virtual inline const char* type() const { return "DualSliceData"; }
   virtual inline int ExactNumBottomBlobs() const { return 0; }
