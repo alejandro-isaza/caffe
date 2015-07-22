@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "61EB4A391B6042D200E895F6"
-               BuildableName = "Caffe.framework"
-               BlueprintName = "Caffe"
+               BlueprintIdentifier = "61DF54E11B334815000D5264"
+               BuildableName = "libCaffeStatic.a"
+               BlueprintName = "CaffeStatic"
                ReferencedContainer = "container:Caffe.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -42,9 +42,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "61EB4A391B6042D200E895F6"
-            BuildableName = "Caffe.framework"
-            BlueprintName = "Caffe"
+            BlueprintIdentifier = "61DF54E11B334815000D5264"
+            BuildableName = "libCaffeStatic.a"
+            BlueprintName = "CaffeStatic"
             ReferencedContainer = "container:Caffe.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -60,9 +60,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "61EB4A391B6042D200E895F6"
-            BuildableName = "Caffe.framework"
-            BlueprintName = "Caffe"
+            BlueprintIdentifier = "61DF54E11B334815000D5264"
+            BuildableName = "libCaffeStatic.a"
+            BlueprintName = "CaffeStatic"
             ReferencedContainer = "container:Caffe.xcodeproj">
          </BuildableReference>
       </MacroExpansion>

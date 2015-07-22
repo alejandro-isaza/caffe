@@ -87,11 +87,10 @@
 		61DF556F1B33492D000D5264 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 616E874B1B321572009CE299 /* Accelerate.framework */; };
 		61DF55731B334934000D5264 /* libglog.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6152820B1B32123600C759C7 /* libglog.a */; };
 		61DF55751B334934000D5264 /* libprotobuf.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6152820D1B32123600C759C7 /* libprotobuf.a */; };
-		61DF55761B334934000D5264 /* libprotoc.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6152820E1B32123600C759C7 /* libprotoc.a */; };
 		61DF55781B334934000D5264 /* libglog.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6152820B1B32123600C759C7 /* libglog.a */; };
 		61DF557A1B334934000D5264 /* libprotobuf.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6152820D1B32123600C759C7 /* libprotobuf.a */; };
 		61DF557B1B334934000D5264 /* libprotoc.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6152820E1B32123600C759C7 /* libprotoc.a */; };
-		61DF561E1B336302000D5264 /* libCaffe.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 61DF54E21B334815000D5264 /* libCaffe.a */; };
+		61DF561E1B336302000D5264 /* libCaffeStatic.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 61DF54E21B334815000D5264 /* libCaffeStatic.a */; };
 		61EB4A341B603CE300E895F6 /* dual_slice_data_layer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 61EB4A331B603CE300E895F6 /* dual_slice_data_layer.cpp */; };
 		61EB4A3F1B6042D200E895F6 /* Caffe.h in Headers */ = {isa = PBXBuildFile; fileRef = 61EB4A3E1B6042D200E895F6 /* Caffe.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		61EB4A541B60437600E895F6 /* absval_layer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 61502F061B27B78B00496218 /* absval_layer.cpp */; };
@@ -112,7 +111,6 @@
 		61EB4A641B60437600E895F6 /* data_layer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 61502F211B27B78B00496218 /* data_layer.cpp */; };
 		61EB4A651B60437600E895F6 /* deconv_layer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 61502F221B27B78B00496218 /* deconv_layer.cpp */; };
 		61EB4A661B60437600E895F6 /* dropout_layer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 61502F241B27B78B00496218 /* dropout_layer.cpp */; };
-		61EB4A671B60437600E895F6 /* dual_slice_data_layer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 61EB4A331B603CE300E895F6 /* dual_slice_data_layer.cpp */; };
 		61EB4A681B60437600E895F6 /* dummy_data_layer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 61502F261B27B78B00496218 /* dummy_data_layer.cpp */; };
 		61EB4A691B60437600E895F6 /* eltwise_layer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 61502F271B27B78B00496218 /* eltwise_layer.cpp */; };
 		61EB4A6A1B60437600E895F6 /* euclidean_loss_layer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 61502F291B27B78B00496218 /* euclidean_loss_layer.cpp */; };
@@ -151,7 +149,6 @@
 		61EB4A8B1B60437F00E895F6 /* db_leveldb.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6150335B1B2F768C00496218 /* db_leveldb.cpp */; };
 		61EB4A8C1B60437F00E895F6 /* db_lmdb.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6150335C1B2F768C00496218 /* db_lmdb.cpp */; };
 		61EB4A8D1B60437F00E895F6 /* db.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 61502FA61B27B78C00496218 /* db.cpp */; };
-		61EB4A8E1B60437F00E895F6 /* fft.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8CE62DF81B3370520006C2AC /* fft.cpp */; };
 		61EB4A8F1B60437F00E895F6 /* im2col.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 61502FA71B27B78C00496218 /* im2col.cpp */; };
 		61EB4A901B60437F00E895F6 /* insert_splits.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 61502FA91B27B78C00496218 /* insert_splits.cpp */; };
 		61EB4A911B60437F00E895F6 /* io.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 61502FAA1B27B78C00496218 /* io.cpp */; };
@@ -239,6 +236,19 @@
 
 /* Begin PBXBuildRule section */
 		61DF557C1B334960000D5264 /* PBXBuildRule */ = {
+			isa = PBXBuildRule;
+			compilerSpec = com.apple.compilers.proxy.script;
+			filePatterns = "*.proto";
+			fileType = pattern.proxy;
+			isEditable = 1;
+			name = "Generate protobuf files";
+			outputFiles = (
+				"$(DERIVED_FILE_DIR)/caffe/proto/$(INPUT_FILE_BASE).pb.cc",
+				"$(DERIVED_FILE_DIR)/caffe/proto/$(INPUT_FILE_BASE).pb.h",
+			);
+			script = "mkdir -p \"$DERIVED_FILE_DIR/caffe/proto\"\nmkdir -p \"$PROJECT_DIR/include/caffe/proto\"\n\n\"$PROJECT_DIR/bin/protoc\" --proto_path=\"$INPUT_FILE_DIR\" --cpp_out=\"$DERIVED_FILE_DIR/caffe/proto\" \"$INPUT_FILE_PATH\"\n\ncp \"$DERIVED_FILE_DIR/caffe/proto/$INPUT_FILE_BASE.pb.h\" \"$PROJECT_DIR/include/caffe/proto\"";
+		};
+		61EB4A531B60433B00E895F6 /* PBXBuildRule */ = {
 			isa = PBXBuildRule;
 			compilerSpec = com.apple.compilers.proxy.script;
 			filePatterns = "*.proto";
@@ -602,7 +612,7 @@
 		61DF495F1B30DC9C0079E197 /* UniversalFramework_Base.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = UniversalFramework_Base.xcconfig; sourceTree = "<group>"; };
 		61DF49601B30DC9C0079E197 /* UniversalFramework_Framework.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = UniversalFramework_Framework.xcconfig; sourceTree = "<group>"; };
 		61DF49611B30DC9C0079E197 /* UniversalFramework_Test.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = UniversalFramework_Test.xcconfig; sourceTree = "<group>"; };
-		61DF54E21B334815000D5264 /* libCaffe.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libCaffe.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		61DF54E21B334815000D5264 /* libCaffeStatic.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libCaffeStatic.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		61DF56211B336D70000D5264 /* blob.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = blob.hpp; sourceTree = "<group>"; };
 		61DF56221B336D70000D5264 /* caffe.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = caffe.hpp; sourceTree = "<group>"; };
 		61DF56231B336D70000D5264 /* common.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = common.hpp; sourceTree = "<group>"; };
@@ -662,8 +672,7 @@
 		8C267BF91B975D30005589D5 /* layer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = layer.cpp; sourceTree = "<group>"; };
 		8C267BFA1B975D30005589D5 /* parallel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = parallel.cpp; sourceTree = "<group>"; };
 		8C267C011B975D3C005589D5 /* blocking_queue.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = blocking_queue.cpp; sourceTree = "<group>"; };
-		8CA4EF621B7E50B100C81999 /* assign_conv_weights.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = assign_conv_weights.h; sourceTree = "<group>"; };
-		8CA4EF641B7E50B100C81999 /* plot_data.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = plot_data.h; sourceTree = "<group>"; };
+		8C267C041B97692A005589D5 /* read_audio.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = read_audio.cpp; sourceTree = "<group>"; };
 		8CAAB5181B336F4C004F5C5B /* fft.hpp */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.cpp.h; path = fft.hpp; sourceTree = "<group>"; tabWidth = 2; };
 		8CE62DF81B3370520006C2AC /* fft.cpp */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.cpp.cpp; path = fft.cpp; sourceTree = "<group>"; tabWidth = 2; };
 		8CE62E0E1B3483830006C2AC /* read_audio.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = read_audio.hpp; sourceTree = "<group>"; };
@@ -675,7 +684,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				61DF561E1B336302000D5264 /* libCaffe.a in Frameworks */,
+				61DF561E1B336302000D5264 /* libCaffeStatic.a in Frameworks */,
 				61DF55781B334934000D5264 /* libglog.a in Frameworks */,
 				61DF557A1B334934000D5264 /* libprotobuf.a in Frameworks */,
 				61DF557B1B334934000D5264 /* libprotoc.a in Frameworks */,
@@ -690,8 +699,22 @@
 				8CE62E101B34839E0006C2AC /* AudioToolbox.framework in Frameworks */,
 				61DF55731B334934000D5264 /* libglog.a in Frameworks */,
 				61DF55751B334934000D5264 /* libprotobuf.a in Frameworks */,
-				61DF55761B334934000D5264 /* libprotoc.a in Frameworks */,
 				61DF556E1B33492D000D5264 /* Accelerate.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		61EB4A361B6042D200E895F6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				61EB4ACB1B604AC800E895F6 /* Foundation.framework in Frameworks */,
+				61EB4AC91B604ABB00E895F6 /* Accelerate.framework in Frameworks */,
+				61EB4AC71B604AB700E895F6 /* AudioToolbox.framework in Frameworks */,
+				61EB4AA31B6043F600E895F6 /* libleveldb.a in Frameworks */,
+				61EB4AA41B6043F600E895F6 /* libopencv_core.a in Frameworks */,
+				61EB4AA51B6043F600E895F6 /* libzlib.a in Frameworks */,
+				61EB4A9E1B6043C300E895F6 /* libglog.a in Frameworks */,
+				61EB4A9F1B6043C300E895F6 /* libprotobuf.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -713,6 +736,7 @@
 				61502FE91B27B78C00496218 /* data */,
 				615030171B27B78C00496218 /* examples */,
 				615030B51B27B78C00496218 /* models */,
+				61EB4A3B1B6042D200E895F6 /* Caffe */,
 				61502ECB1B27B76200496218 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -721,7 +745,8 @@
 			isa = PBXGroup;
 			children = (
 				615031C21B27BD0800496218 /* CaffeCLI */,
-				61DF54E21B334815000D5264 /* libCaffe.a */,
+				61DF54E21B334815000D5264 /* libCaffeStatic.a */,
+				61EB4A3A1B6042D200E895F6 /* Caffe.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -966,8 +991,8 @@
 				61502FAA1B27B78C00496218 /* io.cpp */,
 				61502FAB1B27B78C00496218 /* math_functions.cpp */,
 				61502FAC1B27B78C00496218 /* math_functions.cu */,
+				8C267C041B97692A005589D5 /* read_audio.cpp */,
 				8C267BEA1B966246005589D5 /* signal_handler.cpp */,
-				8CE62E0C1B3483720006C2AC /* read_audio.cpp */,
 				61502FAD1B27B78C00496218 /* upgrade_proto.cpp */,
 			);
 			path = util;
@@ -1315,8 +1340,14 @@
 		615282091B32123600C759C7 /* lib */ = {
 			isa = PBXGroup;
 			children = (
+				61EB4AA01B6043F600E895F6 /* libleveldb.a */,
+				61EB4AA11B6043F600E895F6 /* libopencv_core.a */,
+				61EB4AA21B6043F600E895F6 /* libzlib.a */,
 				616E874B1B321572009CE299 /* Accelerate.framework */,
 				8CE62E0F1B34839E0006C2AC /* AudioToolbox.framework */,
+				61EB4ACA1B604AC800E895F6 /* Foundation.framework */,
+				61EB4AC81B604ABB00E895F6 /* Accelerate.framework */,
+				61EB4AC61B604AB700E895F6 /* AudioToolbox.framework */,
 				6152820B1B32123600C759C7 /* libglog.a */,
 				6152820D1B32123600C759C7 /* libprotobuf.a */,
 				6152820E1B32123600C759C7 /* libprotoc.a */,
@@ -1427,6 +1458,23 @@
 			path = util;
 			sourceTree = "<group>";
 		};
+		61EB4A3B1B6042D200E895F6 /* Caffe */ = {
+			isa = PBXGroup;
+			children = (
+				61EB4A3E1B6042D200E895F6 /* Caffe.h */,
+				61EB4A3C1B6042D200E895F6 /* Supporting Files */,
+			);
+			path = Caffe;
+			sourceTree = "<group>";
+		};
+		61EB4A3C1B6042D200E895F6 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				61EB4A3D1B6042D200E895F6 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -1469,7 +1517,7 @@
 				61EB4ABA1B60467700E895F6 /* db_lmdb.hpp in Headers */,
 				61EB4ABB1B60467700E895F6 /* db.hpp in Headers */,
 				61EB4ABC1B60467700E895F6 /* device_alternate.hpp in Headers */,
-				8C267BD01B9661D0005589D5 /* data_reader.hpp in Headers */,
+				61EB4ABD1B60467700E895F6 /* fft.hpp in Headers */,
 				61EB4ABE1B60467700E895F6 /* im2col.hpp in Headers */,
 				61EB4ABF1B60467700E895F6 /* insert_splits.hpp in Headers */,
 				61EB4AC01B60467700E895F6 /* io.hpp in Headers */,
@@ -1502,9 +1550,9 @@
 			productReference = 615031C21B27BD0800496218 /* CaffeCLI */;
 			productType = "com.apple.product-type.tool";
 		};
-		61DF54E11B334815000D5264 /* Caffe */ = {
+		61DF54E11B334815000D5264 /* CaffeStatic */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 61DF54F31B334815000D5264 /* Build configuration list for PBXNativeTarget "Caffe" */;
+			buildConfigurationList = 61DF54F31B334815000D5264 /* Build configuration list for PBXNativeTarget "CaffeStatic" */;
 			buildPhases = (
 				61DF54DE1B334815000D5264 /* Sources */,
 				61DF54DF1B334815000D5264 /* Frameworks */,
@@ -1516,10 +1564,29 @@
 			);
 			dependencies = (
 			);
+			name = CaffeStatic;
+			productName = Caffe;
+			productReference = 61DF54E21B334815000D5264 /* libCaffeStatic.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		61EB4A391B6042D200E895F6 /* Caffe */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 61EB4A4D1B6042D200E895F6 /* Build configuration list for PBXNativeTarget "Caffe" */;
+			buildPhases = (
+				61EB4A351B6042D200E895F6 /* Sources */,
+				61EB4A361B6042D200E895F6 /* Frameworks */,
+				61EB4A371B6042D200E895F6 /* Headers */,
+				61EB4A381B6042D200E895F6 /* Resources */,
+			);
+			buildRules = (
+				61EB4A531B60433B00E895F6 /* PBXBuildRule */,
+			);
+			dependencies = (
+			);
 			name = Caffe;
 			productName = Caffe;
-			productReference = 61DF54E21B334815000D5264 /* libCaffe.a */;
-			productType = "com.apple.product-type.library.static";
+			productReference = 61EB4A3A1B6042D200E895F6 /* Caffe.framework */;
+			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
 
@@ -1536,6 +1603,9 @@
 					61DF54E11B334815000D5264 = {
 						CreatedOnToolsVersion = 6.3.2;
 					};
+					61EB4A391B6042D200E895F6 = {
+						CreatedOnToolsVersion = 6.4;
+					};
 				};
 			};
 			buildConfigurationList = 61502EC51B27B76200496218 /* Build configuration list for PBXProject "Caffe" */;
@@ -1551,10 +1621,21 @@
 			projectRoot = "";
 			targets = (
 				615031C11B27BD0800496218 /* CaffeCLI */,
-				61DF54E11B334815000D5264 /* Caffe */,
+				61DF54E11B334815000D5264 /* CaffeStatic */,
+				61EB4A391B6042D200E895F6 /* Caffe */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		61EB4A381B6042D200E895F6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		615031BE1B27BD0800496218 /* Sources */ = {
@@ -1576,7 +1657,6 @@
 				61DF54FC1B334879000D5264 /* blob.cpp in Sources */,
 				61DF55411B3348A6000D5264 /* math_functions.cpp in Sources */,
 				61DF55161B3348A0000D5264 /* euclidean_loss_layer.cpp in Sources */,
-				8CE62E161B3489C10006C2AC /* read_audio.cpp in Sources */,
 				61DF55181B3348A0000D5264 /* filter_layer.cpp in Sources */,
 				61DF552F1B3348A0000D5264 /* sigmoid_layer.cpp in Sources */,
 				61DF551F1B3348A0000D5264 /* infogain_loss_layer.cpp in Sources */,
@@ -1594,7 +1674,6 @@
 				61DF552D1B3348A0000D5264 /* reshape_layer.cpp in Sources */,
 				61DF55391B3348A6000D5264 /* benchmark.cpp in Sources */,
 				61DF55151B3348A0000D5264 /* eltwise_layer.cpp in Sources */,
-				8C267BB91B9515E3005589D5 /* tile_layer.cpp in Sources */,
 				8C267BFF1B975D30005589D5 /* parallel.cpp in Sources */,
 				61DF552A1B3348A0000D5264 /* prelu_layer.cpp in Sources */,
 				8C267BE41B966230005589D5 /* embed_layer.cpp in Sources */,
@@ -1649,6 +1728,7 @@
 				61DF55311B3348A0000D5264 /* slice_layer.cpp in Sources */,
 				61DF55221B3348A0000D5264 /* loss_layer.cpp in Sources */,
 				61DF55421B3348A6000D5264 /* upgrade_proto.cpp in Sources */,
+				8C267C051B97692A005589D5 /* read_audio.cpp in Sources */,
 				8CE62DFD1B3370800006C2AC /* fft.cpp in Sources */,
 				61DF55361B3348A0000D5264 /* tanh_layer.cpp in Sources */,
 				61DF55001B334882000D5264 /* layer_factory.cpp in Sources */,
@@ -1717,6 +1797,7 @@
 				61EB4A801B60437600E895F6 /* sigmoid_layer.cpp in Sources */,
 				61EB4A831B60437600E895F6 /* softmax_layer.cpp in Sources */,
 				61EB4A561B60437600E895F6 /* argmax_layer.cpp in Sources */,
+				8C267C061B97692A005589D5 /* read_audio.cpp in Sources */,
 				61EB4A951B60438200E895F6 /* blob.cpp in Sources */,
 				61EB4A841B60437600E895F6 /* softmax_loss_layer.cpp in Sources */,
 				61EB4A8C1B60437F00E895F6 /* db_lmdb.cpp in Sources */,
@@ -1750,7 +1831,7 @@
 /* Begin PBXTargetDependency section */
 		61DF561D1B3362FD000D5264 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 61DF54E11B334815000D5264 /* Caffe */;
+			target = 61DF54E11B334815000D5264 /* CaffeStatic */;
 			targetProxy = 61DF561C1B3362FD000D5264 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -1790,12 +1871,6 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					"${PROJECT_DIR}/include",
-					"${PROJECT_DIR}/osx/include",
-				);
-				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/lib";
 				LOCAL_ROOT = "$(HOME)/../..";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = YES;
@@ -1838,12 +1913,6 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					"${PROJECT_DIR}/include",
-					"${PROJECT_DIR}/osx/include",
-				);
-				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/lib";
 				LOCAL_ROOT = "$(HOME)/../..";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = NO;
@@ -1857,6 +1926,16 @@
 			buildSettings = {
 				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/lib";
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/include",
+					"$(PROJECT_DIR)/osx/include",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/lib",
+					"$(PROJECT_DIR)/ios/lib",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -1865,6 +1944,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/lib";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/include",
+					"$(PROJECT_DIR)/osx/include",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/lib",
+					"$(PROJECT_DIR)/ios/lib",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -1875,6 +1964,16 @@
 			buildSettings = {
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/include",
+					"$(PROJECT_DIR)/ios/include",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/lib",
+					"$(PROJECT_DIR)/ios/lib",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
@@ -1884,9 +1983,84 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 61DF49601B30DC9C0079E197 /* UniversalFramework_Framework.xcconfig */;
 			buildSettings = {
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/include",
+					"$(PROJECT_DIR)/ios/include",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/lib",
+					"$(PROJECT_DIR)/ios/lib",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		61EB4A4E1B6042D200E895F6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = (
+					"${PROJECT_DIR}/include",
+					"${PROJECT_DIR}/ios/include",
+				);
+				INFOPLIST_FILE = Caffe/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/lib",
+					"$(PROJECT_DIR)/ios/lib",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		61EB4A4F1B6042D200E895F6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				HEADER_SEARCH_PATHS = (
+					"${PROJECT_DIR}/include",
+					"${PROJECT_DIR}/ios/include",
+				);
+				INFOPLIST_FILE = Caffe/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/lib",
+					"$(PROJECT_DIR)/ios/lib",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
 			};
 			name = Release;
 		};
@@ -1911,11 +2085,20 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		61DF54F31B334815000D5264 /* Build configuration list for PBXNativeTarget "Caffe" */ = {
+		61DF54F31B334815000D5264 /* Build configuration list for PBXNativeTarget "CaffeStatic" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				61DF54F41B334815000D5264 /* Debug */,
 				61DF54F51B334815000D5264 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		61EB4A4D1B6042D200E895F6 /* Build configuration list for PBXNativeTarget "Caffe" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				61EB4A4E1B6042D200E895F6 /* Debug */,
+				61EB4A4F1B6042D200E895F6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
