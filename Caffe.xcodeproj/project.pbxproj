@@ -795,6 +795,7 @@
 				61502F231B27B78B00496218 /* deconv_layer.cu */,
 				61502F241B27B78B00496218 /* dropout_layer.cpp */,
 				61502F251B27B78B00496218 /* dropout_layer.cu */,
+				61EB4A331B603CE300E895F6 /* dual_slice_data_layer.cpp */,
 				61502F261B27B78B00496218 /* dummy_data_layer.cpp */,
 				61502F271B27B78B00496218 /* eltwise_layer.cpp */,
 				61502F281B27B78B00496218 /* eltwise_layer.cu */,
@@ -1604,6 +1605,7 @@
 				8C267C0A1B97761D005589D5 /* layer.cpp in Sources */,
 				61DF55341B3348A0000D5264 /* split_layer.cpp in Sources */,
 				61DF55351B3348A0000D5264 /* spp_layer.cpp in Sources */,
+				61EB4A341B603CE300E895F6 /* dual_slice_data_layer.cpp in Sources */,
 				61DF55261B3348A0000D5264 /* mvn_layer.cpp in Sources */,
 				61DF54FB1B334875000D5264 /* gflags_reporting.cc in Sources */,
 				61DF55401B3348A6000D5264 /* io.cpp in Sources */,
@@ -1826,7 +1828,10 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREPROCESSOR_DEFINITIONS = "CPU_ONLY=1";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"CPU_ONLY=1",
+					"NDEBUG=1",
+				);
 				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
