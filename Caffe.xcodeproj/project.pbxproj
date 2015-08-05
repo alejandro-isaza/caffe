@@ -212,6 +212,7 @@
 		61EB4ACE1B604AF800E895F6 /* gflags.cc in Sources */ = {isa = PBXBuildFile; fileRef = 616E873D1B321296009CE299 /* gflags.cc */; };
 		61EB4ACF1B604AF800E895F6 /* gflags_completions.cc in Sources */ = {isa = PBXBuildFile; fileRef = 616E873E1B321296009CE299 /* gflags_completions.cc */; };
 		61EB4AD01B604AF800E895F6 /* gflags_reporting.cc in Sources */ = {isa = PBXBuildFile; fileRef = 616E873F1B321296009CE299 /* gflags_reporting.cc */; };
+		8C96AA211B72AEBE00432E48 /* tri_slice_data_layer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8C96AA201B72AEBE00432E48 /* tri_slice_data_layer.cpp */; };
 		8CE62DFD1B3370800006C2AC /* fft.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8CE62DF81B3370520006C2AC /* fft.cpp */; };
 		8CE62E101B34839E0006C2AC /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CE62E0F1B34839E0006C2AC /* AudioToolbox.framework */; };
 		8CE62E141B3488F80006C2AC /* audio_data_layer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8CE62E121B3486D40006C2AC /* audio_data_layer.cpp */; };
@@ -640,6 +641,7 @@
 		61EB4AC61B604AB700E895F6 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.4.sdk/System/Library/Frameworks/AudioToolbox.framework; sourceTree = DEVELOPER_DIR; };
 		61EB4AC81B604ABB00E895F6 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.4.sdk/System/Library/Frameworks/Accelerate.framework; sourceTree = DEVELOPER_DIR; };
 		61EB4ACA1B604AC800E895F6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.4.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		8C96AA201B72AEBE00432E48 /* tri_slice_data_layer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = tri_slice_data_layer.cpp; sourceTree = "<group>"; };
 		8CAAB5181B336F4C004F5C5B /* fft.hpp */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.cpp.h; path = fft.hpp; sourceTree = "<group>"; tabWidth = 2; };
 		8CE62DF81B3370520006C2AC /* fft.cpp */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.cpp.cpp; path = fft.cpp; sourceTree = "<group>"; tabWidth = 2; };
 		8CE62E0C1B3483720006C2AC /* read_audio.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = read_audio.cpp; sourceTree = "<group>"; };
@@ -753,6 +755,7 @@
 		61502F051B27B78B00496218 /* layers */ = {
 			isa = PBXGroup;
 			children = (
+				8C96AA201B72AEBE00432E48 /* tri_slice_data_layer.cpp */,
 				61502F061B27B78B00496218 /* absval_layer.cpp */,
 				61502F071B27B78B00496218 /* absval_layer.cu */,
 				61502F081B27B78B00496218 /* accuracy_layer.cpp */,
@@ -1594,6 +1597,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8C96AA211B72AEBE00432E48 /* tri_slice_data_layer.cpp in Sources */,
 				615031C91B27BD1400496218 /* caffe.cpp in Sources */,
 				619DB3C81B55BEAE007640C1 /* mdb.c in Sources */,
 				619DB3CD1B55BEAE007640C1 /* midl.c in Sources */,

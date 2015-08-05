@@ -25,9 +25,11 @@ namespace caffe {
 struct AudioData {
   std::string file1;
   std::string file2;
+  std::string file3;
   int label;
   int offset1;
   int offset2;
+  int offset3;
 };
 
 /**
@@ -310,6 +312,37 @@ protected:
   std::uniform_real_distribution<double> gainDistribution = std::uniform_real_distribution<double>(-1, 1);
   std::uniform_int_distribution<int> shiftDistribution = std::uniform_int_distribution<int>(0, 4096);
 
+  vector<AudioData> lines_;
+  int lines_id_;
+};
+  
+/**
+ * @brief Provides data to the Net from three audio files.
+ *
+ * TODO(dox): thorough documentation for Forward and proto params.
+ */
+template <typename Dtype>
+class TriSliceDataLayer : public BasePrefetchingDataLayer<Dtype> {
+public:
+  explicit TriSliceDataLayer(const LayerParameter& param)
+  : BasePrefetchingDataLayer<Dtype>(param) {}
+  virtual ~TriSliceDataLayer();
+  virtual void DataLayerSetUp(const vector<Blob<Dtype>*>& bottom,
+                              const vector<Blob<Dtype>*>& top);
+  void fetchFFTransformedData(const std::string& filename, Dtype* data, int offset, Dtype gain, int size);
+  
+  virtual inline const char* type() const { return "TriSliceData"; }
+  virtual inline int ExactNumBottomBlobs() const { return 0; }
+  virtual inline int ExactNumTopBlobs() const { return 2; }
+  
+protected:
+  shared_ptr<Caffe::RNG> prefetch_rng_;
+  virtual void ShuffleFiles();
+  virtual void InternalThreadEntry();
+  std::default_random_engine prng;
+  std::uniform_real_distribution<double> gainDistribution = std::uniform_real_distribution<double>(-1, 1);
+  std::uniform_int_distribution<int> shiftDistribution = std::uniform_int_distribution<int>(0, 4096);
+  
   vector<AudioData> lines_;
   int lines_id_;
 };
