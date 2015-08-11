@@ -223,13 +223,14 @@
 		8C267BEE1B96624F005589D5 /* signal_handler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8C267BEA1B966246005589D5 /* signal_handler.cpp */; };
 		8C267BF11B975BB9005589D5 /* data_reader.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 8C267BEF1B975BB9005589D5 /* data_reader.hpp */; };
 		8C267BF21B975BB9005589D5 /* parallel.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 8C267BF01B975BB9005589D5 /* parallel.hpp */; };
-		8C267BFC1B975D30005589D5 /* data_reader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8C267BF81B975D30005589D5 /* data_reader.cpp */; };
 		8C267BFF1B975D30005589D5 /* parallel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8C267BFA1B975D30005589D5 /* parallel.cpp */; };
 		8C267C031B975D3C005589D5 /* blocking_queue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8C267C011B975D3C005589D5 /* blocking_queue.cpp */; };
-		8C267C091B977604005589D5 /* blocking_queue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8C267C011B975D3C005589D5 /* blocking_queue.cpp */; };
 		8C267C0A1B97761D005589D5 /* layer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8C267BF91B975D30005589D5 /* layer.cpp */; };
-		8C267C0B1B97761D005589D5 /* layer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8C267BF91B975D30005589D5 /* layer.cpp */; };
 		8C267C0C1B977625005589D5 /* data_reader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8C267BF81B975D30005589D5 /* data_reader.cpp */; };
+		8C267C051B97692A005589D5 /* read_audio.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8C267C041B97692A005589D5 /* read_audio.cpp */; };
+		8C953C911B7AA22600F7D787 /* kernel_writer.h in Headers */ = {isa = PBXBuildFile; fileRef = 8C953C8F1B7AA1D700F7D787 /* kernel_writer.h */; };
+		8CD976601B7A9D0C00E3577A /* kernel_writer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8CD9765E1B7A984A00E3577A /* kernel_writer.cpp */; };
+>>>>>>> 36f6103... Add writing proto from binary and kernel writing
 		8CE62DFD1B3370800006C2AC /* fft.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8CE62DF81B3370520006C2AC /* fft.cpp */; };
 		8CE62E101B34839E0006C2AC /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CE62E0F1B34839E0006C2AC /* AudioToolbox.framework */; };
 /* End PBXBuildFile section */
@@ -673,7 +674,9 @@
 		8C267BFA1B975D30005589D5 /* parallel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = parallel.cpp; sourceTree = "<group>"; };
 		8C267C011B975D3C005589D5 /* blocking_queue.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = blocking_queue.cpp; sourceTree = "<group>"; };
 		8C267C041B97692A005589D5 /* read_audio.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = read_audio.cpp; sourceTree = "<group>"; };
+		8C953C8F1B7AA1D700F7D787 /* kernel_writer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = kernel_writer.h; sourceTree = "<group>"; };
 		8CAAB5181B336F4C004F5C5B /* fft.hpp */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.cpp.h; path = fft.hpp; sourceTree = "<group>"; tabWidth = 2; };
+		8CD9765E1B7A984A00E3577A /* kernel_writer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = kernel_writer.cpp; sourceTree = "<group>"; };
 		8CE62DF81B3370520006C2AC /* fft.cpp */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.cpp.cpp; path = fft.cpp; sourceTree = "<group>"; tabWidth = 2; };
 		8CE62E0E1B3483830006C2AC /* read_audio.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = read_audio.hpp; sourceTree = "<group>"; };
 		8CE62E0F1B34839E0006C2AC /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -994,6 +997,7 @@
 				8C267C041B97692A005589D5 /* read_audio.cpp */,
 				8C267BEA1B966246005589D5 /* signal_handler.cpp */,
 				61502FAD1B27B78C00496218 /* upgrade_proto.cpp */,
+				8CD9765E1B7A984A00E3577A /* kernel_writer.cpp */,
 			);
 			path = util;
 			sourceTree = "<group>";
@@ -1445,6 +1449,7 @@
 				61DF56391B336D70000D5264 /* db.hpp */,
 				61DF563C1B336D70000D5264 /* device_alternate.hpp */,
 				8CAAB5181B336F4C004F5C5B /* fft.hpp */,
+				8C953C8F1B7AA1D700F7D787 /* kernel_writer.h */,
 				61DF563D1B336D70000D5264 /* im2col.hpp */,
 				61DF563E1B336D70000D5264 /* insert_splits.hpp */,
 				61DF563F1B336D70000D5264 /* io.hpp */,
@@ -1504,6 +1509,7 @@
 				61EB4AAE1B60467600E895F6 /* layer.hpp in Headers */,
 				8C267BF21B975BB9005589D5 /* parallel.hpp in Headers */,
 				61EB4AAF1B60467600E895F6 /* layer_factory.hpp in Headers */,
+				8C953C911B7AA22600F7D787 /* kernel_writer.h in Headers */,
 				61EB4AB01B60467600E895F6 /* loss_layers.hpp in Headers */,
 				61EB4AB11B60467600E895F6 /* net.hpp in Headers */,
 				8C267BF11B975BB9005589D5 /* data_reader.hpp in Headers */,
@@ -1702,6 +1708,7 @@
 				61DF55441B3348AA000D5264 /* syncedmem.cpp in Sources */,
 				61DF552E1B3348A0000D5264 /* sigmoid_cross_entropy_loss_layer.cpp in Sources */,
 				61DF55081B3348A0000D5264 /* concat_layer.cpp in Sources */,
+				8CD976611B7A9D1200E3577A /* kernel_writer.cpp in Sources */,
 				61DF552B1B3348A0000D5264 /* reduction_layer.cpp in Sources */,
 				61DF55321B3348A0000D5264 /* softmax_layer.cpp in Sources */,
 				61DF54F91B334875000D5264 /* gflags.cc in Sources */,
@@ -1767,6 +1774,7 @@
 				8C267BEE1B96624F005589D5 /* signal_handler.cpp in Sources */,
 				61EB4A641B60437600E895F6 /* data_layer.cpp in Sources */,
 				61EB4A861B60437600E895F6 /* spp_layer.cpp in Sources */,
+				8CD976601B7A9D0C00E3577A /* kernel_writer.cpp in Sources */,
 				61EB4ACE1B604AF800E895F6 /* gflags.cc in Sources */,
 				61EB4A881B60437600E895F6 /* threshold_layer.cpp in Sources */,
 				8C267C0B1B97761D005589D5 /* layer.cpp in Sources */,
