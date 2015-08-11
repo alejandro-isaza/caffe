@@ -63,7 +63,12 @@ void WriteProtoToBinaryFile(const Message& proto, const char* filename) {
   fstream output(filename, ios::out | ios::trunc | ios::binary);
   CHECK(proto.SerializeToOstream(&output));
 }
-
+    
+void createProtoFromBinary(string binaryModelFilename, string outputFilename) {
+    auto net = caffe::NetParameter{};
+    caffe::ReadProtoFromBinaryFile(binaryModelFilename, &net);
+    caffe::WriteProtoToTextFile(net, outputFilename);
+}
 
 // Do the file extension and encoding match?
 static bool matchExt(const std::string & fn,

@@ -125,6 +125,8 @@ inline bool ReadImageToDatum(const string& filename, const int label,
     const std::string & encoding, Datum* datum) {
   return ReadImageToDatum(filename, label, 0, 0, true, encoding, datum);
 }
+    
+void createProtoFromBinary(string binaryModelFilename, string outputFilename);
 
 void CVMatToDatum(const cv::Mat& cv_img, Datum* datum);
 
