@@ -12,6 +12,7 @@
 #include "caffe/proto/caffe.pb.h"
 #include "caffe/syncedmem.hpp"
 #include "caffe/util/math_functions.hpp"
+#include "caffe/util/assign_conv_weights.h"
 
 namespace caffe {
 
@@ -93,6 +94,22 @@ class GaussianFiller : public Filler<Dtype> {
 
  protected:
   shared_ptr<SyncedMemory> rand_vec_;
+};
+
+/** @brief Fills a Blob with values with a predefined
+ *         exponential peak curve.
+ *
+ *  TODO: Have user defined peak.
+ */
+template <typename Dtype>
+class PeakFiller : public Filler<Dtype> {
+  public:
+  explicit PeakFiller(const FillerParameter& param)
+  : Filler<Dtype>(param) {}
+  virtual void Fill(Blob<Dtype>* blob) {
+    auto shape = blob->shape();
+    helper::assignConvolutionWeights(blob->mutable_cpu_data(), shape[0], shape[3]);
+  }
 };
 
 /** @brief Fills a Blob with values @f$ x \in [0, 1] @f$
@@ -221,6 +238,8 @@ Filler<Dtype>* GetFiller(const FillerParameter& param) {
     return new ConstantFiller<Dtype>(param);
   } else if (type == "gaussian") {
     return new GaussianFiller<Dtype>(param);
+  } else if (type == "peak") {
+    return new PeakFiller<Dtype>(param);
   } else if (type == "positive_unitball") {
     return new PositiveUnitballFiller<Dtype>(param);
   } else if (type == "uniform") {
