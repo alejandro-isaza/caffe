@@ -622,14 +622,14 @@
 		61DF56261B336D70000D5264 /* data_transformer.hpp */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.cpp.h; path = data_transformer.hpp; sourceTree = "<group>"; tabWidth = 2; };
 		61DF56271B336D70000D5264 /* filler.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = filler.hpp; sourceTree = "<group>"; };
 		61DF56281B336D70000D5264 /* internal_thread.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = internal_thread.hpp; sourceTree = "<group>"; };
-		61DF56291B336D70000D5264 /* layer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = layer.hpp; sourceTree = "<group>"; };
+		61DF56291B336D70000D5264 /* layer.hpp */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.cpp.h; path = layer.hpp; sourceTree = "<group>"; tabWidth = 2; };
 		61DF562A1B336D70000D5264 /* layer_factory.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = layer_factory.hpp; sourceTree = "<group>"; };
 		61DF562B1B336D70000D5264 /* loss_layers.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = loss_layers.hpp; sourceTree = "<group>"; };
-		61DF562C1B336D70000D5264 /* net.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = net.hpp; sourceTree = "<group>"; };
+		61DF562C1B336D70000D5264 /* net.hpp */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.cpp.h; path = net.hpp; sourceTree = "<group>"; tabWidth = 2; };
 		61DF562D1B336D70000D5264 /* neuron_layers.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = neuron_layers.hpp; sourceTree = "<group>"; };
 		61DF562F1B336D70000D5264 /* caffe.pb.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = caffe.pb.h; sourceTree = "<group>"; };
 		61DF56301B336D70000D5264 /* python_layer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = python_layer.hpp; sourceTree = "<group>"; };
-		61DF56311B336D70000D5264 /* solver.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = solver.hpp; sourceTree = "<group>"; };
+		61DF56311B336D70000D5264 /* solver.hpp */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.cpp.h; path = solver.hpp; sourceTree = "<group>"; tabWidth = 2; };
 		61DF56321B336D70000D5264 /* syncedmem.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = syncedmem.hpp; sourceTree = "<group>"; };
 		61DF56341B336D70000D5264 /* test_caffe_main.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = test_caffe_main.hpp; sourceTree = "<group>"; };
 		61DF56351B336D70000D5264 /* test_gradient_check_util.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = test_gradient_check_util.hpp; sourceTree = "<group>"; };
@@ -675,8 +675,9 @@
 		8C267C011B975D3C005589D5 /* blocking_queue.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = blocking_queue.cpp; sourceTree = "<group>"; };
 		8C267C041B97692A005589D5 /* read_audio.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = read_audio.cpp; sourceTree = "<group>"; };
 		8C953C8F1B7AA1D700F7D787 /* kernel_writer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = kernel_writer.h; sourceTree = "<group>"; };
+		8CA4EF621B7E50B100C81999 /* assign_conv_weights.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = assign_conv_weights.h; sourceTree = "<group>"; };
+		8CA4EF641B7E50B100C81999 /* plot_data.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = plot_data.h; sourceTree = "<group>"; };
 		8CAAB5181B336F4C004F5C5B /* fft.hpp */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.cpp.h; path = fft.hpp; sourceTree = "<group>"; tabWidth = 2; };
-		8CD9765E1B7A984A00E3577A /* kernel_writer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = kernel_writer.cpp; sourceTree = "<group>"; };
 		8CE62DF81B3370520006C2AC /* fft.cpp */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.cpp.cpp; path = fft.cpp; sourceTree = "<group>"; tabWidth = 2; };
 		8CE62E0E1B3483830006C2AC /* read_audio.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = read_audio.hpp; sourceTree = "<group>"; };
 		8CE62E0F1B34839E0006C2AC /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -997,7 +998,6 @@
 				8C267C041B97692A005589D5 /* read_audio.cpp */,
 				8C267BEA1B966246005589D5 /* signal_handler.cpp */,
 				61502FAD1B27B78C00496218 /* upgrade_proto.cpp */,
-				8CD9765E1B7A984A00E3577A /* kernel_writer.cpp */,
 			);
 			path = util;
 			sourceTree = "<group>";
@@ -1397,15 +1397,15 @@
 			children = (
 				61DF56211B336D70000D5264 /* blob.hpp */,
 				61DF56221B336D70000D5264 /* caffe.hpp */,
-				61DF56231B336D70000D5264 /* common.hpp */,
 				61DF56241B336D70000D5264 /* common_layers.hpp */,
+				61DF56231B336D70000D5264 /* common.hpp */,
 				61DF56251B336D70000D5264 /* data_layers.hpp */,
 				8C267BEF1B975BB9005589D5 /* data_reader.hpp */,
 				61DF56261B336D70000D5264 /* data_transformer.hpp */,
 				61DF56271B336D70000D5264 /* filler.hpp */,
 				61DF56281B336D70000D5264 /* internal_thread.hpp */,
-				61DF56291B336D70000D5264 /* layer.hpp */,
 				61DF562A1B336D70000D5264 /* layer_factory.hpp */,
+				61DF56291B336D70000D5264 /* layer.hpp */,
 				61DF562B1B336D70000D5264 /* loss_layers.hpp */,
 				61DF562C1B336D70000D5264 /* net.hpp */,
 				61DF562D1B336D70000D5264 /* neuron_layers.hpp */,
@@ -1441,6 +1441,9 @@
 		61DF56361B336D70000D5264 /* util */ = {
 			isa = PBXGroup;
 			children = (
+				8CA4EF621B7E50B100C81999 /* assign_conv_weights.h */,
+				8CA4EF631B7E50B100C81999 /* kernel_writer.h */,
+				8CA4EF641B7E50B100C81999 /* plot_data.h */,
 				61DF56371B336D70000D5264 /* benchmark.hpp */,
 				8C267BD11B9661E9005589D5 /* blocking_queue.hpp */,
 				61DF56381B336D70000D5264 /* cudnn.hpp */,
@@ -1449,7 +1452,6 @@
 				61DF56391B336D70000D5264 /* db.hpp */,
 				61DF563C1B336D70000D5264 /* device_alternate.hpp */,
 				8CAAB5181B336F4C004F5C5B /* fft.hpp */,
-				8C953C8F1B7AA1D700F7D787 /* kernel_writer.h */,
 				61DF563D1B336D70000D5264 /* im2col.hpp */,
 				61DF563E1B336D70000D5264 /* insert_splits.hpp */,
 				61DF563F1B336D70000D5264 /* io.hpp */,
@@ -1509,7 +1511,6 @@
 				61EB4AAE1B60467600E895F6 /* layer.hpp in Headers */,
 				8C267BF21B975BB9005589D5 /* parallel.hpp in Headers */,
 				61EB4AAF1B60467600E895F6 /* layer_factory.hpp in Headers */,
-				8C953C911B7AA22600F7D787 /* kernel_writer.h in Headers */,
 				61EB4AB01B60467600E895F6 /* loss_layers.hpp in Headers */,
 				61EB4AB11B60467600E895F6 /* net.hpp in Headers */,
 				8C267BF11B975BB9005589D5 /* data_reader.hpp in Headers */,
@@ -1708,7 +1709,6 @@
 				61DF55441B3348AA000D5264 /* syncedmem.cpp in Sources */,
 				61DF552E1B3348A0000D5264 /* sigmoid_cross_entropy_loss_layer.cpp in Sources */,
 				61DF55081B3348A0000D5264 /* concat_layer.cpp in Sources */,
-				8CD976611B7A9D1200E3577A /* kernel_writer.cpp in Sources */,
 				61DF552B1B3348A0000D5264 /* reduction_layer.cpp in Sources */,
 				61DF55321B3348A0000D5264 /* softmax_layer.cpp in Sources */,
 				61DF54F91B334875000D5264 /* gflags.cc in Sources */,
@@ -1774,7 +1774,6 @@
 				8C267BEE1B96624F005589D5 /* signal_handler.cpp in Sources */,
 				61EB4A641B60437600E895F6 /* data_layer.cpp in Sources */,
 				61EB4A861B60437600E895F6 /* spp_layer.cpp in Sources */,
-				8CD976601B7A9D0C00E3577A /* kernel_writer.cpp in Sources */,
 				61EB4ACE1B604AF800E895F6 /* gflags.cc in Sources */,
 				61EB4A881B60437600E895F6 /* threshold_layer.cpp in Sources */,
 				8C267C0B1B97761D005589D5 /* layer.cpp in Sources */,
