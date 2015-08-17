@@ -57,6 +57,12 @@ message FillerParameter {
     AVERAGE = 2;
   }
   optional VarianceNorm variance_norm = 8 [default = FAN_IN];
+  enum PeakType {
+  THICK = 0;
+  THIN = 1;
+  FFT = 2;
+  }
+  optional PeakType peak_type = 9 [default = THIN];
 }
 
 message NetParameter {

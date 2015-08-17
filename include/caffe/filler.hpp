@@ -108,7 +108,7 @@ class PeakFiller : public Filler<Dtype> {
   : Filler<Dtype>(param) {}
   virtual void Fill(Blob<Dtype>* blob) {
     auto shape = blob->shape();
-    helper::assignConvolutionWeights(blob->mutable_cpu_data(), shape[0], shape[3]);
+    assignConvolutionWeights(blob->mutable_cpu_data(), shape[0], shape[3], this->filler_param_.peak_type());
   }
 };
 
