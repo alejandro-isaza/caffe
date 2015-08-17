@@ -604,7 +604,7 @@
 		61DF56241B336D70000D5264 /* common_layers.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = common_layers.hpp; sourceTree = "<group>"; };
 		61DF56251B336D70000D5264 /* data_layers.hpp */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.cpp.h; path = data_layers.hpp; sourceTree = "<group>"; tabWidth = 2; };
 		61DF56261B336D70000D5264 /* data_transformer.hpp */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.cpp.h; path = data_transformer.hpp; sourceTree = "<group>"; tabWidth = 2; };
-		61DF56271B336D70000D5264 /* filler.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = filler.hpp; sourceTree = "<group>"; };
+		61DF56271B336D70000D5264 /* filler.hpp */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.cpp.h; path = filler.hpp; sourceTree = "<group>"; tabWidth = 2; };
 		61DF56281B336D70000D5264 /* internal_thread.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = internal_thread.hpp; sourceTree = "<group>"; };
 		61DF56291B336D70000D5264 /* layer.hpp */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.cpp.h; path = layer.hpp; sourceTree = "<group>"; tabWidth = 2; };
 		61DF562A1B336D70000D5264 /* layer_factory.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = layer_factory.hpp; sourceTree = "<group>"; };
@@ -643,7 +643,6 @@
 		61EB4ACA1B604AC800E895F6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.4.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		8C96AA201B72AEBE00432E48 /* tri_slice_data_layer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = tri_slice_data_layer.cpp; sourceTree = "<group>"; };
 		8CA4EF621B7E50B100C81999 /* assign_conv_weights.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = assign_conv_weights.h; sourceTree = "<group>"; };
-		8CA4EF631B7E50B100C81999 /* kernel_writer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = kernel_writer.h; sourceTree = "<group>"; };
 		8CA4EF641B7E50B100C81999 /* plot_data.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = plot_data.h; sourceTree = "<group>"; };
 		8CAAB5181B336F4C004F5C5B /* fft.hpp */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.cpp.h; path = fft.hpp; sourceTree = "<group>"; tabWidth = 2; };
 		8CE62DF81B3370520006C2AC /* fft.cpp */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.cpp.cpp; path = fft.cpp; sourceTree = "<group>"; tabWidth = 2; };
@@ -1402,7 +1401,6 @@
 			isa = PBXGroup;
 			children = (
 				8CA4EF621B7E50B100C81999 /* assign_conv_weights.h */,
-				8CA4EF631B7E50B100C81999 /* kernel_writer.h */,
 				8CA4EF641B7E50B100C81999 /* plot_data.h */,
 				61DF56371B336D70000D5264 /* benchmark.hpp */,
 				61DF56381B336D70000D5264 /* cudnn.hpp */,

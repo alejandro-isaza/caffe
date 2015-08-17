@@ -18,6 +18,9 @@
 #include "json/json.hpp"
 
 namespace caffe {
+    
+    const auto kChannels = 2;
+    const auto kHeight = 2;
 
     template <typename Dtype>
     DualSliceDataLayer<Dtype>::~DualSliceDataLayer<Dtype>() {
@@ -59,9 +62,9 @@ namespace caffe {
         lines_id_ = 0;
 
         Datum datum;
-        datum.set_channels(1);
-        datum.set_height(2);
-        datum.set_width(this->layer_param_.dual_slice_data_param().sample_count());
+        datum.set_channels(kChannels);
+        datum.set_height(kHeight);
+        datum.set_width(this->layer_param_.dual_slice_data_param().sample_count() / 2);
 
         // Use data_transformer to infer the expected blob shape from a datum.
         vector<int> top_shape = this->data_transformer_->InferBlobShape(datum);
@@ -102,12 +105,11 @@ namespace caffe {
         const int batch_size = dual_slice_data_param.batch_size();
         string root_folder = dual_slice_data_param.root_folder();
         const auto sample_count = this->layer_param_.dual_slice_data_param().sample_count();
-        const auto width = static_cast<int>(sample_count);
-        const auto height = 2;
+        const auto width = static_cast<int>(sample_count) / 2;
 
         Datum datum;
-        datum.set_channels(1);
-        datum.set_height(height);
+        datum.set_channels(kChannels);
+        datum.set_height(kHeight);
         datum.set_width(width);
 
         // Use data_transformer to infer the expected blob shape from a datum.
@@ -131,11 +133,12 @@ namespace caffe {
             const auto offsets = std::vector<int>{lines_[lines_id_].offset1 + shiftDistribution(prng), lines_[lines_id_].offset2 + shiftDistribution(prng)};
             const auto gain = std::exp(gainDistribution(prng));
             
-            Blob<Dtype> blob({1, 1, height, width});
+            Blob<Dtype> blob({1, kChannels, kHeight, width});
             auto data = blob.mutable_cpu_data();
 
             fetchFFTransformedData(root_folder + fileNames[0], data, offsets[0], gain, sample_count);
             fetchFFTransformedData(root_folder + fileNames[1], data + sample_count, offsets[1], gain, sample_count);
+            std::swap_ranges(data + (sample_count / 2), data + sample_count, data + sample_count);
 
             read_time += timer.MicroSeconds();
             timer.Start();
