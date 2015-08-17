@@ -7,7 +7,7 @@
 #include <iostream>
 #include <ostream>
 
-namespace helper {
+namespace caffe {
     
 template <typename It>
 void drawPNG(std:: string filename, It b, It e) {
@@ -34,4 +34,4 @@ void drawPNG(std::string filename, Container& cont) {
     return drawPNG(filename, b, e);
 }
     
-} // namespace helper
+} // namespace caffe

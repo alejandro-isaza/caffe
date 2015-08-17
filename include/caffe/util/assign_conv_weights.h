@@ -10,7 +10,8 @@
 
 
 
-namespace helper {
+
+namespace caffe {
     
 template <typename T>
 class KernelGen {
@@ -96,4 +97,4 @@ inline void assignConvolutionWeights(T* data, int numKernels, int kernelWidth) {
     kernel.generateKernel(data);
 }
 
-} // namespace helper
+} // namespace caffe
