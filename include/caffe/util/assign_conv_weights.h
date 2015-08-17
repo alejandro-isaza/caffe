@@ -10,8 +10,8 @@
 
 
 
-namespace helper {
-
+namespace caffe {
+    
 template <typename T>
 class KernelGen {
 public:
@@ -251,4 +251,4 @@ inline void assignConvolutionWeights(T* data, int numKernels, int kernelSize, ca
     kernel->generateKernel(data);
 }
 
-} // namespace helper
+} // namespace caffe
