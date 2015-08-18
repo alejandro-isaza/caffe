@@ -60,9 +60,10 @@ message FillerParameter {
   }
   optional VarianceNorm variance_norm = 8 [default = FAN_IN];
   enum PeakType {
-  THICK = 0;
-  THIN = 1;
-  FFT = 2;
+    THICK = 0;
+    THIN = 1;
+    FFT = 2;
+    WAVELET = 3;
   }
   optional PeakType peak_type = 9 [default = THIN];
 }
