@@ -58,6 +58,7 @@ class Solver {
   int current_step_;
   shared_ptr<Net<Dtype> > net_;
   vector<shared_ptr<Net<Dtype> > > test_nets_;
+  vector<Dtype> accuracies;
 
   DISABLE_COPY_AND_ASSIGN(Solver);
 };

@@ -10,6 +10,7 @@
 #include "caffe/util/io.hpp"
 #include "caffe/util/math_functions.hpp"
 #include "caffe/util/upgrade_proto.hpp"
+#include "caffe/util/plot_data.h"
 
 namespace caffe {
 
@@ -344,6 +345,9 @@ void Solver<Dtype>::Test(const int test_net_id) {
       loss_msg_stream << " (* " << loss_weight
                       << " = " << loss_weight * mean_score << " loss)";
     }
+    if (output_name == "accuracy") {
+      accuracies.push_back(mean_score);
+    }
     LOG(INFO) << "    Test net output #" << i << ": " << output_name << " = "
         << mean_score << loss_msg_stream.str();
   }
@@ -372,6 +376,7 @@ void Solver<Dtype>::Snapshot() {
   snapshot_filename = filename + ".solverstate";
   LOG(INFO) << "Snapshotting solver state to " << snapshot_filename;
   WriteProtoToBinaryFile(state, snapshot_filename.c_str());
+  drawPNG(filename, accuracies);
 }
 
 template <typename Dtype>
