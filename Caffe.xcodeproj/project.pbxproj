@@ -154,7 +154,6 @@
 		61EB4A901B60437F00E895F6 /* insert_splits.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 61502FA91B27B78C00496218 /* insert_splits.cpp */; };
 		61EB4A911B60437F00E895F6 /* io.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 61502FAA1B27B78C00496218 /* io.cpp */; };
 		61EB4A921B60437F00E895F6 /* math_functions.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 61502FAB1B27B78C00496218 /* math_functions.cpp */; };
-		61EB4A931B60437F00E895F6 /* read_audio.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8CE62E0C1B3483720006C2AC /* read_audio.cpp */; };
 		61EB4A941B60437F00E895F6 /* upgrade_proto.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 61502FAD1B27B78C00496218 /* upgrade_proto.cpp */; };
 		61EB4A951B60438200E895F6 /* blob.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 61502EFF1B27B78B00496218 /* blob.cpp */; };
 		61EB4A961B60438200E895F6 /* common.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 61502F011B27B78B00496218 /* common.cpp */; };
@@ -216,11 +215,12 @@
 		8C267B621B84E769005589D5 /* libOoura_fft.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C267B601B84E754005589D5 /* libOoura_fft.a */; };
 		8C267B631B84E76A005589D5 /* libOoura_fft.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C267B601B84E754005589D5 /* libOoura_fft.a */; };
 		8C267B641B84E76A005589D5 /* libOoura_fft.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C267B601B84E754005589D5 /* libOoura_fft.a */; };
+		8C267B791B853720005589D5 /* read_audio_apple.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8CE62E0C1B3483720006C2AC /* read_audio_apple.cpp */; };
+		8C267B7A1B853721005589D5 /* read_audio_apple.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8CE62E0C1B3483720006C2AC /* read_audio_apple.cpp */; };
 		8C96AA211B72AEBE00432E48 /* tri_slice_data_layer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8C96AA201B72AEBE00432E48 /* tri_slice_data_layer.cpp */; };
 		8CE62DFD1B3370800006C2AC /* fft.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8CE62DF81B3370520006C2AC /* fft.cpp */; };
 		8CE62E101B34839E0006C2AC /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CE62E0F1B34839E0006C2AC /* AudioToolbox.framework */; };
 		8CE62E141B3488F80006C2AC /* audio_data_layer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8CE62E121B3486D40006C2AC /* audio_data_layer.cpp */; };
-		8CE62E161B3489C10006C2AC /* read_audio.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8CE62E0C1B3483720006C2AC /* read_audio.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXBuildRule section */
@@ -646,12 +646,13 @@
 		61EB4ACA1B604AC800E895F6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.4.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		8C26791F1B83D803005589D5 /* libAquila.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libAquila.a; sourceTree = "<group>"; };
 		8C267B601B84E754005589D5 /* libOoura_fft.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libOoura_fft.a; sourceTree = "<group>"; };
+		8C267B691B84FE05005589D5 /* read_audio_unix.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = read_audio_unix.cpp; sourceTree = "<group>"; };
 		8C96AA201B72AEBE00432E48 /* tri_slice_data_layer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = tri_slice_data_layer.cpp; sourceTree = "<group>"; };
 		8CA4EF621B7E50B100C81999 /* assign_conv_weights.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = assign_conv_weights.h; sourceTree = "<group>"; };
 		8CA4EF641B7E50B100C81999 /* plot_data.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = plot_data.h; sourceTree = "<group>"; };
 		8CAAB5181B336F4C004F5C5B /* fft.hpp */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.cpp.h; path = fft.hpp; sourceTree = "<group>"; tabWidth = 2; };
 		8CE62DF81B3370520006C2AC /* fft.cpp */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.cpp.cpp; path = fft.cpp; sourceTree = "<group>"; tabWidth = 2; };
-		8CE62E0C1B3483720006C2AC /* read_audio.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = read_audio.cpp; sourceTree = "<group>"; };
+		8CE62E0C1B3483720006C2AC /* read_audio_apple.cpp */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.cpp.cpp; path = read_audio_apple.cpp; sourceTree = "<group>"; tabWidth = 2; };
 		8CE62E0E1B3483830006C2AC /* read_audio.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = read_audio.hpp; sourceTree = "<group>"; };
 		8CE62E0F1B34839E0006C2AC /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		8CE62E121B3486D40006C2AC /* audio_data_layer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = audio_data_layer.cpp; sourceTree = "<group>"; };
@@ -966,8 +967,9 @@
 				61502FAA1B27B78C00496218 /* io.cpp */,
 				61502FAB1B27B78C00496218 /* math_functions.cpp */,
 				61502FAC1B27B78C00496218 /* math_functions.cu */,
-				8CE62E0C1B3483720006C2AC /* read_audio.cpp */,
+				8CE62E0C1B3483720006C2AC /* read_audio_apple.cpp */,
 				61502FAD1B27B78C00496218 /* upgrade_proto.cpp */,
+				8C267B691B84FE05005589D5 /* read_audio_unix.cpp */,
 			);
 			path = util;
 			sourceTree = "<group>";
@@ -1627,7 +1629,6 @@
 				61DF54FC1B334879000D5264 /* blob.cpp in Sources */,
 				61DF55411B3348A6000D5264 /* math_functions.cpp in Sources */,
 				61DF55161B3348A0000D5264 /* euclidean_loss_layer.cpp in Sources */,
-				8CE62E161B3489C10006C2AC /* read_audio.cpp in Sources */,
 				61DF55181B3348A0000D5264 /* filter_layer.cpp in Sources */,
 				61DF552F1B3348A0000D5264 /* sigmoid_layer.cpp in Sources */,
 				61DF551F1B3348A0000D5264 /* infogain_loss_layer.cpp in Sources */,
@@ -1645,6 +1646,7 @@
 				61DF552D1B3348A0000D5264 /* reshape_layer.cpp in Sources */,
 				61DF55391B3348A6000D5264 /* benchmark.cpp in Sources */,
 				61DF55151B3348A0000D5264 /* eltwise_layer.cpp in Sources */,
+				8C267B791B853720005589D5 /* read_audio_apple.cpp in Sources */,
 				61DF552A1B3348A0000D5264 /* prelu_layer.cpp in Sources */,
 				61DF55211B3348A0000D5264 /* log_layer.cpp in Sources */,
 				61DF55071B3348A0000D5264 /* bnll_layer.cpp in Sources */,
@@ -1722,7 +1724,6 @@
 				61EB4A631B60437600E895F6 /* cudnn_tanh_layer.cpp in Sources */,
 				61EB4A751B60437600E895F6 /* memory_data_layer.cpp in Sources */,
 				61EB4A651B60437600E895F6 /* deconv_layer.cpp in Sources */,
-				61EB4A931B60437F00E895F6 /* read_audio.cpp in Sources */,
 				61EB4A5D1B60437600E895F6 /* conv_layer.cpp in Sources */,
 				61EB4A711B60437600E895F6 /* inner_product_layer.cpp in Sources */,
 				61EB4A901B60437F00E895F6 /* insert_splits.cpp in Sources */,
@@ -1731,6 +1732,7 @@
 				61EB4A5C1B60437600E895F6 /* contrastive_loss_layer.cpp in Sources */,
 				61EB4A671B60437600E895F6 /* dual_slice_data_layer.cpp in Sources */,
 				61EB4A601B60437600E895F6 /* cudnn_relu_layer.cpp in Sources */,
+				8C267B7A1B853721005589D5 /* read_audio_apple.cpp in Sources */,
 				61EB4A641B60437600E895F6 /* data_layer.cpp in Sources */,
 				61EB4A861B60437600E895F6 /* spp_layer.cpp in Sources */,
 				61EB4ACE1B604AF800E895F6 /* gflags.cc in Sources */,

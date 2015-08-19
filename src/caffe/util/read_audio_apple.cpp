@@ -1,6 +1,7 @@
+#include <AudioToolbox/AudioToolbox.h>
+
 #include "caffe/util/read_audio.hpp"
 #include "caffe/common.hpp"
-#include <AudioToolbox/AudioToolbox.h>
 
 namespace caffe {
 
