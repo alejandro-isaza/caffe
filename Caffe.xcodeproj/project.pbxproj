@@ -83,8 +83,6 @@
 		61DF55431B3348AA000D5264 /* solver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 61502F611B27B78B00496218 /* solver.cpp */; };
 		61DF55441B3348AA000D5264 /* syncedmem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 61502F621B27B78B00496218 /* syncedmem.cpp */; };
 		61DF55451B3348C2000D5264 /* caffe.proto in Sources */ = {isa = PBXBuildFile; fileRef = 61502F601B27B78B00496218 /* caffe.proto */; };
-		61DF556E1B33492D000D5264 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 616E874B1B321572009CE299 /* Accelerate.framework */; };
-		61DF556F1B33492D000D5264 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 616E874B1B321572009CE299 /* Accelerate.framework */; };
 		61DF55731B334934000D5264 /* libglog.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6152820B1B32123600C759C7 /* libglog.a */; };
 		61DF55751B334934000D5264 /* libprotobuf.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6152820D1B32123600C759C7 /* libprotobuf.a */; };
 		61DF55781B334934000D5264 /* libglog.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6152820B1B32123600C759C7 /* libglog.a */; };
@@ -212,6 +210,12 @@
 		61EB4ACE1B604AF800E895F6 /* gflags.cc in Sources */ = {isa = PBXBuildFile; fileRef = 616E873D1B321296009CE299 /* gflags.cc */; };
 		61EB4ACF1B604AF800E895F6 /* gflags_completions.cc in Sources */ = {isa = PBXBuildFile; fileRef = 616E873E1B321296009CE299 /* gflags_completions.cc */; };
 		61EB4AD01B604AF800E895F6 /* gflags_reporting.cc in Sources */ = {isa = PBXBuildFile; fileRef = 616E873F1B321296009CE299 /* gflags_reporting.cc */; };
+		8C2679201B83D803005589D5 /* libAquila.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C26791F1B83D803005589D5 /* libAquila.a */; };
+		8C2679271B83FAFE005589D5 /* libAquila.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C26791F1B83D803005589D5 /* libAquila.a */; };
+		8C26792A1B83FB13005589D5 /* libAquila.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C26791F1B83D803005589D5 /* libAquila.a */; };
+		8C267B621B84E769005589D5 /* libOoura_fft.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C267B601B84E754005589D5 /* libOoura_fft.a */; };
+		8C267B631B84E76A005589D5 /* libOoura_fft.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C267B601B84E754005589D5 /* libOoura_fft.a */; };
+		8C267B641B84E76A005589D5 /* libOoura_fft.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C267B601B84E754005589D5 /* libOoura_fft.a */; };
 		8C96AA211B72AEBE00432E48 /* tri_slice_data_layer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8C96AA201B72AEBE00432E48 /* tri_slice_data_layer.cpp */; };
 		8CE62DFD1B3370800006C2AC /* fft.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8CE62DF81B3370520006C2AC /* fft.cpp */; };
 		8CE62E101B34839E0006C2AC /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CE62E0F1B34839E0006C2AC /* AudioToolbox.framework */; };
@@ -589,7 +593,6 @@
 		616E873F1B321296009CE299 /* gflags_reporting.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = gflags_reporting.cc; sourceTree = "<group>"; };
 		616E87401B321296009CE299 /* mutex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mutex.h; sourceTree = "<group>"; };
 		616E87411B321296009CE299 /* util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = util.h; sourceTree = "<group>"; };
-		616E874B1B321572009CE299 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.3.sdk/System/Library/Frameworks/Accelerate.framework; sourceTree = DEVELOPER_DIR; };
 		619DB3BC1B55BEAE007640C1 /* mdb.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mdb.c; sourceTree = "<group>"; };
 		619DB3C11B55BEAE007640C1 /* midl.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = midl.c; sourceTree = "<group>"; };
 		61DF495D1B30DC9C0079E197 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
@@ -641,6 +644,8 @@
 		61EB4AC61B604AB700E895F6 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.4.sdk/System/Library/Frameworks/AudioToolbox.framework; sourceTree = DEVELOPER_DIR; };
 		61EB4AC81B604ABB00E895F6 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.4.sdk/System/Library/Frameworks/Accelerate.framework; sourceTree = DEVELOPER_DIR; };
 		61EB4ACA1B604AC800E895F6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.4.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		8C26791F1B83D803005589D5 /* libAquila.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libAquila.a; sourceTree = "<group>"; };
+		8C267B601B84E754005589D5 /* libOoura_fft.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libOoura_fft.a; sourceTree = "<group>"; };
 		8C96AA201B72AEBE00432E48 /* tri_slice_data_layer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = tri_slice_data_layer.cpp; sourceTree = "<group>"; };
 		8CA4EF621B7E50B100C81999 /* assign_conv_weights.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = assign_conv_weights.h; sourceTree = "<group>"; };
 		8CA4EF641B7E50B100C81999 /* plot_data.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = plot_data.h; sourceTree = "<group>"; };
@@ -657,11 +662,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8C26792A1B83FB13005589D5 /* libAquila.a in Frameworks */,
+				8C267B621B84E769005589D5 /* libOoura_fft.a in Frameworks */,
 				61DF561E1B336302000D5264 /* libCaffeStatic.a in Frameworks */,
 				61DF55781B334934000D5264 /* libglog.a in Frameworks */,
 				61DF557A1B334934000D5264 /* libprotobuf.a in Frameworks */,
 				61DF557B1B334934000D5264 /* libprotoc.a in Frameworks */,
-				61DF556F1B33492D000D5264 /* Accelerate.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -671,8 +677,9 @@
 			files = (
 				8CE62E101B34839E0006C2AC /* AudioToolbox.framework in Frameworks */,
 				61DF55731B334934000D5264 /* libglog.a in Frameworks */,
+				8C267B631B84E76A005589D5 /* libOoura_fft.a in Frameworks */,
+				8C2679271B83FAFE005589D5 /* libAquila.a in Frameworks */,
 				61DF55751B334934000D5264 /* libprotobuf.a in Frameworks */,
-				61DF556E1B33492D000D5264 /* Accelerate.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -683,9 +690,11 @@
 				61EB4ACB1B604AC800E895F6 /* Foundation.framework in Frameworks */,
 				61EB4AC91B604ABB00E895F6 /* Accelerate.framework in Frameworks */,
 				61EB4AC71B604AB700E895F6 /* AudioToolbox.framework in Frameworks */,
+				8C2679201B83D803005589D5 /* libAquila.a in Frameworks */,
 				61EB4AA31B6043F600E895F6 /* libleveldb.a in Frameworks */,
 				61EB4AA41B6043F600E895F6 /* libopencv_core.a in Frameworks */,
 				61EB4AA51B6043F600E895F6 /* libzlib.a in Frameworks */,
+				8C267B641B84E76A005589D5 /* libOoura_fft.a in Frameworks */,
 				61EB4A9E1B6043C300E895F6 /* libglog.a in Frameworks */,
 				61EB4A9F1B6043C300E895F6 /* libprotobuf.a in Frameworks */,
 			);
@@ -1305,10 +1314,11 @@
 		615282091B32123600C759C7 /* lib */ = {
 			isa = PBXGroup;
 			children = (
+				8C267B601B84E754005589D5 /* libOoura_fft.a */,
+				8C26791F1B83D803005589D5 /* libAquila.a */,
 				61EB4AA01B6043F600E895F6 /* libleveldb.a */,
 				61EB4AA11B6043F600E895F6 /* libopencv_core.a */,
 				61EB4AA21B6043F600E895F6 /* libzlib.a */,
-				616E874B1B321572009CE299 /* Accelerate.framework */,
 				8CE62E0F1B34839E0006C2AC /* AudioToolbox.framework */,
 				61EB4ACA1B604AC800E895F6 /* Foundation.framework */,
 				61EB4AC81B604ABB00E895F6 /* Accelerate.framework */,

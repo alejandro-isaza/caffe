@@ -172,7 +172,7 @@ namespace caffe {
         dsp::vsmul(data, 1, &gain, data, 1, size);
 
         if (this->layer_param_.dual_slice_data_param().fft()) {
-            auto fft = FastFourierTransform<Dtype>(size, this->layer_param_.dual_slice_data_param().fft_options());
+            FastFourierTransform<Dtype> fft(size, this->layer_param_.dual_slice_data_param().fft_options());
             fft.process(data, size);
         }
     }
