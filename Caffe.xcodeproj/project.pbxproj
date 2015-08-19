@@ -206,26 +206,20 @@
 		61EB4ACE1B604AF800E895F6 /* gflags.cc in Sources */ = {isa = PBXBuildFile; fileRef = 616E873D1B321296009CE299 /* gflags.cc */; };
 		61EB4ACF1B604AF800E895F6 /* gflags_completions.cc in Sources */ = {isa = PBXBuildFile; fileRef = 616E873E1B321296009CE299 /* gflags_completions.cc */; };
 		61EB4AD01B604AF800E895F6 /* gflags_reporting.cc in Sources */ = {isa = PBXBuildFile; fileRef = 616E873F1B321296009CE299 /* gflags_reporting.cc */; };
-		8C2679201B83D803005589D5 /* libAquila.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C26791F1B83D803005589D5 /* libAquila.a */; };
-		8C2679271B83FAFE005589D5 /* libAquila.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C26791F1B83D803005589D5 /* libAquila.a */; };
-		8C26792A1B83FB13005589D5 /* libAquila.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C26791F1B83D803005589D5 /* libAquila.a */; };
-		8C267B621B84E769005589D5 /* libOoura_fft.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C267B601B84E754005589D5 /* libOoura_fft.a */; };
-		8C267B631B84E76A005589D5 /* libOoura_fft.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C267B601B84E754005589D5 /* libOoura_fft.a */; };
-		8C267B641B84E76A005589D5 /* libOoura_fft.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C267B601B84E754005589D5 /* libOoura_fft.a */; };
 		8C267BD01B9661D0005589D5 /* data_reader.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 8C267BCF1B9661C9005589D5 /* data_reader.hpp */; };
+		8C267B791B853720005589D5 /* read_audio_apple.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8CE62E0C1B3483720006C2AC /* read_audio_apple.cpp */; };
+		8C267B7A1B853721005589D5 /* read_audio_apple.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8CE62E0C1B3483720006C2AC /* read_audio_apple.cpp */; };
 		8C267BD31B9661F1005589D5 /* blocking_queue.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 8C267BD11B9661E9005589D5 /* blocking_queue.hpp */; };
 		8C267BD41B9661F1005589D5 /* signal_handler.h in Headers */ = {isa = PBXBuildFile; fileRef = 8C267BD21B9661E9005589D5 /* signal_handler.h */; };
 		8C267BE41B966230005589D5 /* embed_layer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8C267BE01B966228005589D5 /* embed_layer.cpp */; };
 		8C267BE61B966231005589D5 /* embed_layer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8C267BE01B966228005589D5 /* embed_layer.cpp */; };
 		8C267BEC1B96624E005589D5 /* signal_handler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8C267BEA1B966246005589D5 /* signal_handler.cpp */; };
 		8C267BEE1B96624F005589D5 /* signal_handler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8C267BEA1B966246005589D5 /* signal_handler.cpp */; };
-		8C267BF11B975BB9005589D5 /* data_reader.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 8C267BEF1B975BB9005589D5 /* data_reader.hpp */; };
 		8C267BF21B975BB9005589D5 /* parallel.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 8C267BF01B975BB9005589D5 /* parallel.hpp */; };
 		8C267BFF1B975D30005589D5 /* parallel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8C267BFA1B975D30005589D5 /* parallel.cpp */; };
 		8C267C031B975D3C005589D5 /* blocking_queue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8C267C011B975D3C005589D5 /* blocking_queue.cpp */; };
 		8C267C0A1B97761D005589D5 /* layer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8C267BF91B975D30005589D5 /* layer.cpp */; };
 		8C267C0C1B977625005589D5 /* data_reader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8C267BF81B975D30005589D5 /* data_reader.cpp */; };
-		8C267C051B97692A005589D5 /* read_audio.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8C267C041B97692A005589D5 /* read_audio.cpp */; };
 		8C953C911B7AA22600F7D787 /* kernel_writer.h in Headers */ = {isa = PBXBuildFile; fileRef = 8C953C8F1B7AA1D700F7D787 /* kernel_writer.h */; };
 		8CD976601B7A9D0C00E3577A /* kernel_writer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8CD9765E1B7A984A00E3577A /* kernel_writer.cpp */; };
 		8C2679201B83D803005589D5 /* libAquila.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C26791F1B83D803005589D5 /* libAquila.a */; };
@@ -658,6 +652,7 @@
 		8C26791F1B83D803005589D5 /* libAquila.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libAquila.a; sourceTree = "<group>"; };
 		8C267B601B84E754005589D5 /* libOoura_fft.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libOoura_fft.a; sourceTree = "<group>"; };
 		8C267BCF1B9661C9005589D5 /* data_reader.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = data_reader.hpp; sourceTree = "<group>"; };
+		8C267B691B84FE05005589D5 /* read_audio_unix.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = read_audio_unix.cpp; sourceTree = "<group>"; };
 		8C267BD11B9661E9005589D5 /* blocking_queue.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = blocking_queue.hpp; sourceTree = "<group>"; };
 		8C267BD21B9661E9005589D5 /* signal_handler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = signal_handler.h; sourceTree = "<group>"; };
 		8C267BE01B966228005589D5 /* embed_layer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = embed_layer.cpp; sourceTree = "<group>"; };
@@ -671,14 +666,11 @@
 		8C267BF91B975D30005589D5 /* layer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = layer.cpp; sourceTree = "<group>"; };
 		8C267BFA1B975D30005589D5 /* parallel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = parallel.cpp; sourceTree = "<group>"; };
 		8C267C011B975D3C005589D5 /* blocking_queue.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = blocking_queue.cpp; sourceTree = "<group>"; };
-		8C267C041B97692A005589D5 /* read_audio.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = read_audio.cpp; sourceTree = "<group>"; };
-		8C953C8F1B7AA1D700F7D787 /* kernel_writer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = kernel_writer.h; sourceTree = "<group>"; };
-		8C26791F1B83D803005589D5 /* libAquila.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libAquila.a; sourceTree = "<group>"; };
-		8C267B601B84E754005589D5 /* libOoura_fft.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libOoura_fft.a; sourceTree = "<group>"; };
 		8CA4EF621B7E50B100C81999 /* assign_conv_weights.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = assign_conv_weights.h; sourceTree = "<group>"; };
 		8CA4EF641B7E50B100C81999 /* plot_data.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = plot_data.h; sourceTree = "<group>"; };
 		8CAAB5181B336F4C004F5C5B /* fft.hpp */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.cpp.h; path = fft.hpp; sourceTree = "<group>"; tabWidth = 2; };
 		8CE62DF81B3370520006C2AC /* fft.cpp */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.cpp.cpp; path = fft.cpp; sourceTree = "<group>"; tabWidth = 2; };
+		8CE62E0C1B3483720006C2AC /* read_audio_apple.cpp */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.cpp.cpp; path = read_audio_apple.cpp; sourceTree = "<group>"; tabWidth = 2; };
 		8CE62E0E1B3483830006C2AC /* read_audio.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = read_audio.hpp; sourceTree = "<group>"; };
 		8CE62E0F1B34839E0006C2AC /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
@@ -999,7 +991,8 @@
 				61502FAA1B27B78C00496218 /* io.cpp */,
 				61502FAB1B27B78C00496218 /* math_functions.cpp */,
 				61502FAC1B27B78C00496218 /* math_functions.cu */,
-				8C267C041B97692A005589D5 /* read_audio.cpp */,
+				8CE62E0C1B3483720006C2AC /* read_audio_apple.cpp */,
+				8C267B691B84FE05005589D5 /* read_audio_unix.cpp */,
 				8C267BEA1B966246005589D5 /* signal_handler.cpp */,
 				61502FAD1B27B78C00496218 /* upgrade_proto.cpp */,
 			);
@@ -1686,6 +1679,7 @@
 				61DF55391B3348A6000D5264 /* benchmark.cpp in Sources */,
 				61DF55151B3348A0000D5264 /* eltwise_layer.cpp in Sources */,
 				8C267BFF1B975D30005589D5 /* parallel.cpp in Sources */,
+				8C267B791B853720005589D5 /* read_audio_apple.cpp in Sources */,
 				61DF552A1B3348A0000D5264 /* prelu_layer.cpp in Sources */,
 				8C267BE41B966230005589D5 /* embed_layer.cpp in Sources */,
 				61DF55211B3348A0000D5264 /* log_layer.cpp in Sources */,
@@ -1739,7 +1733,6 @@
 				61DF55311B3348A0000D5264 /* slice_layer.cpp in Sources */,
 				61DF55221B3348A0000D5264 /* loss_layer.cpp in Sources */,
 				61DF55421B3348A6000D5264 /* upgrade_proto.cpp in Sources */,
-				8C267C051B97692A005589D5 /* read_audio.cpp in Sources */,
 				8CE62DFD1B3370800006C2AC /* fft.cpp in Sources */,
 				61DF55361B3348A0000D5264 /* tanh_layer.cpp in Sources */,
 				61DF55001B334882000D5264 /* layer_factory.cpp in Sources */,
@@ -1776,6 +1769,7 @@
 				61EB4A5C1B60437600E895F6 /* contrastive_loss_layer.cpp in Sources */,
 				61EB4A601B60437600E895F6 /* cudnn_relu_layer.cpp in Sources */,
 				8C267BEE1B96624F005589D5 /* signal_handler.cpp in Sources */,
+				8C267B7A1B853721005589D5 /* read_audio_apple.cpp in Sources */,
 				61EB4A641B60437600E895F6 /* data_layer.cpp in Sources */,
 				61EB4A861B60437600E895F6 /* spp_layer.cpp in Sources */,
 				61EB4ACE1B604AF800E895F6 /* gflags.cc in Sources */,
@@ -1808,7 +1802,6 @@
 				61EB4A801B60437600E895F6 /* sigmoid_layer.cpp in Sources */,
 				61EB4A831B60437600E895F6 /* softmax_layer.cpp in Sources */,
 				61EB4A561B60437600E895F6 /* argmax_layer.cpp in Sources */,
-				8C267C061B97692A005589D5 /* read_audio.cpp in Sources */,
 				61EB4A951B60438200E895F6 /* blob.cpp in Sources */,
 				61EB4A841B60437600E895F6 /* softmax_loss_layer.cpp in Sources */,
 				61EB4A8C1B60437F00E895F6 /* db_lmdb.cpp in Sources */,
