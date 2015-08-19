@@ -266,8 +266,8 @@ protected:
             if (i < 84) {
                 const auto filename = "data/Training/Notes/AcousticGrandPiano_YDP/" + std::to_string(i + 24) + ".caf";
                 caffe::ReadAudioFile(filename, std::begin(fftBuffer), 2 * kernelSize);
-
-                auto fft = caffe::FastFourierTransform<T>(2 * kernelSize, options);
+                
+                caffe::FastFourierTransform<T> fft(2 * kernelSize, options);
                 fft.process(std::begin(fftBuffer), 2 * kernelSize);
 
                 std::transform(std::begin(fftBuffer), std::begin(fftBuffer) + 2 * kernelSize, std::begin(fftBuffer), [kernelSize](const T& a){
