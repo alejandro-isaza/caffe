@@ -44,7 +44,7 @@ include_directories(SYSTEM ${Snappy_INCLUDE_DIR})
 list(APPEND Caffe_LINKER_LIBS ${Snappy_LIBRARIES})
 
 # ---[ SndFile
-find_package(sndfile REQUIRED)
+find_package(SndFile REQUIRED)
 include_directories(SYSTEM ${SNDFILE_INCLUDE_DIR})
 list(APPEND Caffe_LINKER_LIBS ${SNDFILE_LIBRARIES})
 
