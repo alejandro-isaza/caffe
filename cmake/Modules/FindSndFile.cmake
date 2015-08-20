@@ -2,7 +2,7 @@
 # Find the native sndfile includes and libraries
 #
 #  SNDFILE_INCLUDE_DIR - where to find sndfile.h, etc.
-#  SNDFILE_LIBRARIES   - List of libraries when using libsndfile.
+#  SNDFILE_LIBRARY   - List of libraries when using libsndfile.
 #  SNDFILE_FOUND       - True if libsndfile found.
 
 FIND_PATH(SNDFILE_INCLUDE_DIR NAMES sndfile.h PATHS ${CMAKE_SOURCE_DIR}/libs/libsndfile/src/)
@@ -18,9 +18,9 @@ find_package_handle_standard_args(SNDFILE DEFAULT_MSG
     SNDFILE_INCLUDE_DIR SNDFILE_LIBRARY)
 
 if(SNDFILE_FOUND)
-  set(SNDFILE_LIBRARIES ${SNDFILE_LIBRARY})
+  set(SNDFILE_LIBRARY ${SNDFILE_LIBRARY})
 else(SNDFILE_FOUND)
-  set(SNDFILE_LIBRARIES)
+  set(SNDFILE_LIBRARY)
 endif(SNDFILE_FOUND)
 
 mark_as_advanced(SNDFILE_INCLUDE_DIR SNDFILE_LIBRARY)
