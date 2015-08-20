@@ -46,7 +46,7 @@ list(APPEND Caffe_LINKER_LIBS ${Snappy_LIBRARIES})
 # ---[ SndFile
 find_package(SndFile REQUIRED)
 include_directories(SYSTEM ${SNDFILE_INCLUDE_DIR})
-list(APPEND Caffe_LINKER_LIBS ${SNDFILE_LIBRARIES})
+list(APPEND Caffe_LINKER_LIBS ${SNDFILE_LIBRARY})
 
 # ---[ CUDA
 include(cmake/Cuda.cmake)
