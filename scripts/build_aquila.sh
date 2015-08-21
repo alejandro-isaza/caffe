@@ -68,10 +68,10 @@ echo "$(tput sgr0)"
     cd ${AQUILA_RELEASE_DIRNAME}
     cmake .
     make
+    sudo make install
 
-    mv "${AQUILA_LIB}" "../lib/"
-    mv "${OOURA_LIB}" "../lib/"
-    mv "aquila" "../include/"
+    sudo mv "${OOURA_LIB}" "/usr/local/lib"
+    sudo mv "lib/ooura" "/usr/local/include"
 
     cd ..
     rm -fr ${AQUILA_SRC_DIR}

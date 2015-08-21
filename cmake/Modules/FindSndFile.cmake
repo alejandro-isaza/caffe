@@ -5,9 +5,9 @@
 #  SNDFILE_LIBRARY   - List of libraries when using libsndfile.
 #  SNDFILE_FOUND       - True if libsndfile found.
 
-FIND_PATH(SNDFILE_INCLUDE_DIR NAMES sndfile.h PATHS ${CMAKE_SOURCE_DIR}/libs/libsndfile/src/)
+FIND_PATH(SNDFILE_INCLUDE_DIR NAMES sndfile.h PATHS $ENV{LEVELDB_ROOT}/include /opt/local/include /usr/local/include /usr/include)
 
-FIND_LIBRARY(SNDFILE_LIBRARY NAMES libsndfile.a PATHS ${CMAKE_SOURCE_DIR}/libs/libsndfile/src/.libs/)
+FIND_LIBRARY(SNDFILE_LIBRARY NAMES libsndfile PATHS /usr/lib $ENV{LEVELDB_ROOT}/lib)
 
 MESSAGE( STATUS "SNDFILE_INCLUDE_DIR = \"${SNDFILE_INCLUDE_DIR}\"" )
 MESSAGE( STATUS "SNDFILE_LIBRARY = \"${SNDFILE_LIBRARY}\"" )
