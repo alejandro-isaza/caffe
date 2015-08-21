@@ -8,8 +8,8 @@
 FIND_PATH(OOURA_INCLUDE_DIR NAMES ooura/fft4g.c PATHS $ENV{LEVELDB_ROOT}/include /opt/local/include /usr/local/include /usr/include)
 FIND_PATH(AQUILA_INCLUDE_DIR NAMES aquila/aquila.h PATHS $ENV{LEVELDB_ROOT}/include /opt/local/include /usr/local/include /usr/include)
 
-FIND_LIBRARY(OOURA_LIBRARY NAMES Ooura_fft PATHS /usr/lib $ENV{LEVELDB_ROOT}/lib)
-FIND_LIBRARY(AQUILA_LIBRARY NAMES Aquila PATHS /usr/lib $ENV{LEVELDB_ROOT}/lib)
+FIND_LIBRARY(OOURA_LIBRARY NAMES Ooura_fft PATHS /usr/lib /usr/local/lib $ENV{LEVELDB_ROOT}/lib)
+FIND_LIBRARY(AQUILA_LIBRARY NAMES Aquila PATHS /usr/lib /usr/local/lib $ENV{LEVELDB_ROOT}/lib)
 
 MESSAGE( STATUS "OOURA_INCLUDE_DIR = \"${OOURA_INCLUDE_DIR}\"" )
 MESSAGE( STATUS "OOURA_LIBRARY = \"${OOURA_LIBRARY}\"" )

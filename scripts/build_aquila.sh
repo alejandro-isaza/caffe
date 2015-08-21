@@ -66,7 +66,7 @@ echo "###################################################################"
 echo "$(tput sgr0)"
 (
     cd ${AQUILA_RELEASE_DIRNAME}
-    cmake .
+    cmake -DCMAKE_CXX_FLAGS=-fPIC .
     make
     sudo make install
 
