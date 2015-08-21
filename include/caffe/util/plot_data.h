@@ -5,15 +5,14 @@
 #include <cstdlib>
 #include <cstdio>
 #include <iostream>
-#include <ostream>
+#include <fstream>
 
 namespace caffe {
     
 template <typename It>
 void drawPNG(std:: string filename, It b, It e) {
-    auto buf = std::ofstream{};
-    buf.open(filename, std::ios_base::out | std::ios_base::trunc);
-   
+    std::ofstream buf(filename, std::ios_base::out | std::ios_base::trunc);
+
     using value_type = typename std::iterator_traits<It>::value_type;
     auto stream = std::ostream_iterator<value_type>(buf, "\n");
     std::copy(b, e, stream);
