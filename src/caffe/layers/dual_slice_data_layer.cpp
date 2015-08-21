@@ -132,7 +132,7 @@ namespace caffe {
             const auto offsets = std::vector<int>{lines_[lines_id_].offset1 + shiftDistribution(prng), lines_[lines_id_].offset2 + shiftDistribution(prng)};
             const auto gain = std::exp(gainDistribution(prng));
             
-            Blob<Dtype> blob({1, kChannels, kHeight, width});
+            Blob<Dtype> blob(1, kChannels, kHeight, width);
             auto data = blob.mutable_cpu_data();
 
             fetchFFTransformedData(root_folder + fileNames[0], data, offsets[0], gain, sample_count);
