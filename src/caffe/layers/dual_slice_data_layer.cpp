@@ -9,7 +9,6 @@
 #include "caffe/data_layers.hpp"
 #include "caffe/layer.hpp"
 #include "caffe/util/benchmark.hpp"
-#include "caffe/util/dsp.hpp"
 #include "caffe/util/io.hpp"
 #include "caffe/util/math_functions.hpp"
 #include "caffe/util/rng.hpp"
@@ -169,7 +168,7 @@ namespace caffe {
     template <typename Dtype>
     void DualSliceDataLayer<Dtype>::fetchFFTransformedData(const std::string& filename, Dtype* data, int offset, Dtype gain, int size) {
         ReadAudioFile(filename, data, size, offset);
-        dsp::vsmul(data, 1, &gain, data, 1, size);
+        caffe_scal(size, gain, data);
 
         if (this->layer_param_.dual_slice_data_param().fft()) {
             FastFourierTransform<Dtype> fft(size, this->layer_param_.dual_slice_data_param().fft_options());
