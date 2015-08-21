@@ -118,7 +118,7 @@ void AudioDataLayer<Dtype>::load_batch(Batch<Dtype>* batch) {
     // get a blob
     timer.Start();
 
-    Blob<Dtype> blob({1, 1, 1, width});
+    Blob<Dtype> blob(1, 1, 1, width);
     auto data = blob.mutable_cpu_data();
 
     ReadAudioFile(root_folder + lines_[lines_id_].first, data, width);
