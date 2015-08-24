@@ -12,10 +12,10 @@ namespace caffe {
         auto info = SF_INFO{};
         
         auto file = sf_open(filePath.c_str(), SFM_READ, &info);
-        CHECK_EQ(sf_error(file), SF_ERR_NO_ERROR);
-        
+        CHECK_EQ(sf_error(file), SF_ERR_NO_ERROR) << "Can't open file '" << filePath << "': " << sf_strerror(file);
+
         auto status = sf_seek(file, offset, SEEK_SET);
-        CHECK_NE(status, -1) << "Can't seek to offset in: " << filePath;
+        CHECK_NE(status, -1) << "Can't seek to offset in: '" << filePath << "': " << sf_strerror(file);
         
         auto numberOfFrames = sf_read_float(file, data, capacity);
         CHECK_EQ(numberOfFrames, capacity) << "File could not fill provided array";
@@ -27,10 +27,10 @@ namespace caffe {
         auto info = SF_INFO{};
         
         auto file = sf_open(filePath.c_str(), SFM_READ, &info);
-        CHECK_EQ(sf_error(file), SF_ERR_NO_ERROR);
+        CHECK_EQ(sf_error(file), SF_ERR_NO_ERROR) << "Can't open file '" << filePath << "': " << sf_strerror(file);
         
         auto status = sf_seek(file, offset, SEEK_SET);
-        CHECK_NE(status, -1) << "Can't seek to offset in: " << filePath;
+        CHECK_NE(status, -1) << "Can't seek to offset in: '" << filePath << "': " << sf_strerror(file);
         
         auto numberOfFrames = sf_read_double(file, data, capacity);
         CHECK_EQ(numberOfFrames, capacity) << "File could not fill provided array";
