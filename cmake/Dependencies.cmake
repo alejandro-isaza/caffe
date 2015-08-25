@@ -50,7 +50,6 @@ list(APPEND Caffe_LINKER_LIBS ${SNDFILE_LIBRARY})
 
 # ---[ Aquila
 find_package(Aquila REQUIRED)
-include_directories(SYSTEM ${OOURA_INCLUDE_DIR})
 list(APPEND Caffe_LINKER_LIBS ${OOURA_LIBRARY})
 include_directories(SYSTEM ${AQUILA_INCLUDE_DIR})
 list(APPEND Caffe_LINKER_LIBS ${AQUILA_LIBRARY})
