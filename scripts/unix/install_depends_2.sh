@@ -5,11 +5,23 @@ cd $WORKDIR/nvidia_installers
 sudo ./NVIDIA-Linux-x86_64-346.46.run
 # See https://github.com/BVLC/caffe/wiki/Install-Caffe-on-EC2-from-scratch-(Ubuntu,-CUDA-7,-cuDNN)
 
+# cuFFT
+wget http://developer.download.nvidia.com/compute/cuda/7_0/Prod/cufft_update/cufft_patch_linux.tar.gz
+cp cufft_patch_linux.tar.gz ~
+cd /usr/local/cuda-7.0
+sudo tar zxvf ~/cufft_patch_linux.tar.gz --keep-directory-symlink
+
+# cuDNN
+tar -zxf cudnn-6.5-linux-x64-v2.tgz
+cd cudnn-6.5-linux-x64-v2
+sudo cp lib* /usr/local/cuda/lib64/
+sudo cp cudnn.h /usr/local/cuda/include/
+
 # Install Aquila
 cd $WORKDIR
 git clone git://github.com/zsiciarz/aquila.git aquila-src
 cd aquila-src
-mkdir build && cd build && cmake ..
+mkdir build && cd build && cmake .. -DCMAKE_CXX_FLAGS="-fPIC"
 make -j8
 sudo make install
 sudo cp lib/libOoura_fft.a /usr/local/lib/

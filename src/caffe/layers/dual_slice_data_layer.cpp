@@ -18,10 +18,6 @@
 
 namespace caffe {
 
-    const auto kChannels = 2;
-    const auto kHeight = 2;
-
-
 const auto kChannels = 2;
 const auto kHeight = 2;
 

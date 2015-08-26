@@ -80,7 +80,7 @@ class BasePrefetchingDataLayer :
   // DataLayerSetUp to do special data layer setup for individual layer types.
   // This method may not be overridden.
   void LayerSetUp(const vector<Blob<Dtype>*>& bottom,
-      const vector<Blob<Dtype>*>& top);
+      const vector<Blob<Dtype>*>& top) final;
 
   virtual void Forward_cpu(const vector<Blob<Dtype>*>& bottom,
       const vector<Blob<Dtype>*>& top);
@@ -313,16 +313,21 @@ public:
   virtual ~DualSliceDataLayer();
   virtual void DataLayerSetUp(const vector<Blob<Dtype>*>& bottom,
                               const vector<Blob<Dtype>*>& top);
-  void fetchFFTransformedData(const std::string& filename, Dtype* data, int offset, Dtype gain, int size);
+  virtual void Forward_cpu(const vector<Blob<Dtype>*>& bottom,
+                           const vector<Blob<Dtype>*>& top);
+  virtual void Forward_gpu(const vector<Blob<Dtype>*>& bottom,
+                           const vector<Blob<Dtype>*>& top);
+  void fetchFFTransformedData_cpu(Dtype* data, int size);
+  void fetchFFTransformedData_gpu(Dtype* data, int size);
 
   virtual inline const char* type() const { return "DualSliceData"; }
   virtual inline int ExactNumBottomBlobs() const { return 0; }
   virtual inline int ExactNumTopBlobs() const { return 2; }
 
-protected:
-  shared_ptr<Caffe::RNG> prefetch_rng_;
   virtual void ShuffleFiles();
   virtual void load_batch(Batch<Dtype>* batch);
+protected:
+  shared_ptr<Caffe::RNG> prefetch_rng_;
   std::default_random_engine prng;
   std::uniform_real_distribution<double> gainDistribution = std::uniform_real_distribution<double>(-1, 1);
   std::uniform_int_distribution<int> shiftDistribution = std::uniform_int_distribution<int>(0, 4096);
