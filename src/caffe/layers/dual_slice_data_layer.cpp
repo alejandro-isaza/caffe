@@ -17,7 +17,7 @@
 #include "json/json.hpp"
 
 namespace caffe {
-    
+
     const auto kChannels = 2;
     const auto kHeight = 2;
 
@@ -131,13 +131,14 @@ namespace caffe {
             const auto fileNames = std::vector<std::string>{lines_[lines_id_].file1, lines_[lines_id_].file2};
             const auto offsets = std::vector<int>{lines_[lines_id_].offset1 + shiftDistribution(prng), lines_[lines_id_].offset2 + shiftDistribution(prng)};
             const auto gain = std::exp(gainDistribution(prng));
-            
+
             Blob<Dtype> blob(1, kChannels, kHeight, width);
             auto data = blob.mutable_cpu_data();
 
-            fetchFFTransformedData(root_folder + fileNames[0], data, offsets[0], gain, sample_count);
-            fetchFFTransformedData(root_folder + fileNames[1], data + sample_count, offsets[1], gain, sample_count);
-            std::swap_ranges(data + (sample_count / 2), data + sample_count, data + sample_count);
+            ReadAudioFile(fileNames[0], data, sample_count, offsets[0]);
+            ReadAudioFile(fileNames[1], data + sample_count, sample_count, offsets[1]);
+
+            caffe_scal(blob.count(), static_cast<Dtype>(gain), data);
 
             read_time += timer.MicroSeconds();
             timer.Start();
@@ -146,7 +147,7 @@ namespace caffe {
             this->transformed_data_.set_cpu_data(prefetch_data + offset);
             this->data_transformer_->Transform(&blob, &(this->transformed_data_));
             trans_time += timer.MicroSeconds();
-            
+
             prefetch_label[item_id] = label;
             // go to the next iter
             lines_id_++;
@@ -166,18 +167,50 @@ namespace caffe {
     }
 
     template <typename Dtype>
-    void DualSliceDataLayer<Dtype>::fetchFFTransformedData(const std::string& filename, Dtype* data, int offset, Dtype gain, int size) {
-        ReadAudioFile(filename, data, size, offset);
-        caffe_scal(size, gain, data);
+    void DualSliceDataLayer<Dtype>::Forward_cpu(
+        const vector<Blob<Dtype>*>& bottom, const vector<Blob<Dtype>*>& top) {
+      // First, join the thread
+      JoinPrefetchThread();
+      DLOG(INFO) << "Thread joined";
+      // Reshape to loaded data.
+      const auto sample_count = this->layer_param_.dual_slice_data_param().sample_count();
+      Blob<Dtype> blob(1, kChannels, kHeight, sample_count / 2);
+      top[0]->ReshapeLike(blob);
+      // Copy the data
+      caffe_copy(prefetch_data_.count(), prefetch_data_.cpu_data(),
+                 top[0]->mutable_cpu_data());
+      DLOG(INFO) << "Prefetch copied";
+      if (this->output_labels_) {
+        // Reshape to loaded labels.
+        top[1]->ReshapeLike(prefetch_label_);
+        // Copy the labels.
+        caffe_copy(prefetch_label_.count(), prefetch_label_.cpu_data(),
+                   top[1]->mutable_cpu_data());
+      }
 
+      const auto data_count = top[0]->shape(1) * top[0]->shape(2) * top[0]->shape(3);
+      for (auto i = 0; i < top[0]->shape(0); ++i) {
+        auto data = top[0]->mutable_cpu_data() + (i * data_count);
+        fetchFFTransformedData_cpu(data, sample_count);
+        fetchFFTransformedData_cpu(data + sample_count, sample_count);
+        std::swap_ranges(data + (sample_count / 2), data + sample_count, data + sample_count);
+      }
+
+      // Start a new prefetch thread
+      DLOG(INFO) << "CreatePrefetchThread";
+      CreatePrefetchThread();
+    }
+
+    template <typename Dtype>
+    void DualSliceDataLayer<Dtype>::fetchFFTransformedData_cpu(Dtype* data, int size) {
         if (this->layer_param_.dual_slice_data_param().fft()) {
-            FastFourierTransform<Dtype> fft(size, this->layer_param_.dual_slice_data_param().fft_options());
+            FastFourierTransform_cpu<Dtype> fft(size, this->layer_param_.dual_slice_data_param().fft_options());
             fft.process(data, size);
         }
     }
 
-    
+
     INSTANTIATE_CLASS(DualSliceDataLayer);
     REGISTER_LAYER_CLASS(DualSliceData);
-    
+
 }  // namespace caffe

@@ -298,13 +298,23 @@ public:
   virtual ~DualSliceDataLayer();
   virtual void DataLayerSetUp(const vector<Blob<Dtype>*>& bottom,
                               const vector<Blob<Dtype>*>& top);
-  void fetchFFTransformedData(const std::string& filename, Dtype* data, int offset, Dtype gain, int size);
+  void fetchFFTransformedData_cpu(Dtype* data, int size);
+  void fetchFFTransformedData_gpu(Dtype* data, int size);
+  void Forward_cpu(const vector<Blob<Dtype>*>& bottom, const vector<Blob<Dtype>*>& top);
+  void Forward_gpu(const vector<Blob<Dtype>*>& bottom, const vector<Blob<Dtype>*>& top);
+  
+  virtual inline void CreatePrefetchThread() { BasePrefetchingDataLayer<Dtype>::CreatePrefetchThread(); };
+  virtual inline void JoinPrefetchThread() { BasePrefetchingDataLayer<Dtype>::JoinPrefetchThread(); };
 
   virtual inline const char* type() const { return "DualSliceData"; }
   virtual inline int ExactNumBottomBlobs() const { return 0; }
   virtual inline int ExactNumTopBlobs() const { return 2; }
 
 protected:
+  Blob<Dtype> prefetch_data_;
+  Blob<Dtype> prefetch_label_;
+  Blob<Dtype> transformed_data_;
+  
   shared_ptr<Caffe::RNG> prefetch_rng_;
   virtual void ShuffleFiles();
   virtual void InternalThreadEntry();

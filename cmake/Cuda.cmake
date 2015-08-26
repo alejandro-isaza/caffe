@@ -145,7 +145,7 @@ macro(caffe_cuda_compile objlist_variable)
   endforeach()
 
   if(UNIX OR APPLE)
-    list(APPEND CUDA_NVCC_FLAGS -Xcompiler -fPIC)
+    list(APPEND CUDA_NVCC_FLAGS -Xcompiler -fPIC -std=c++11)
   endif()
 
   if(APPLE)
@@ -190,6 +190,27 @@ endfunction()
 
 
 ################################################################################################
+# Include cuFFT
+set(CUFFT_ROOT "" CACHE PATH "CUFTT root folder")
+
+find_path(CUFFT_INCLUDE cufft.h
+          PATHS ${CUFFT_ROOT} $ENV{CUFFT_ROOT} ${CUDA_TOOLKIT_INCLUDE}
+          DOC "Path to cuFTT include directory." )
+
+get_filename_component(__libpath_hist ${CUDA_CUDART_LIBRARY} PATH)
+find_library(CUFFT_LIBRARY NAMES libcufft.so # libcufft_static.a
+                           PATHS ${CUFFT_ROOT} $ENV{CUFFT_ROOT} ${CUFFT_INCLUDE} ${__libpath_hist}
+                           DOC "Path to cuFFT library.")
+
+if(CUFFT_INCLUDE AND CUFFT_LIBRARY)
+  include_directories(SYSTEM ${CUFFT_INCLUDE})
+  list(APPEND Caffe_LINKER_LIBS ${CUFFT_LIBRARY})
+  message(WARNING "Found cuFFT (include: ${CUFFT_INCLUDE}, library: ${CUFFT_LIBRARY})")
+endif()
+
+
+
+################################################################################################
 ###  Non macro section
 ################################################################################################
 
@@ -218,7 +239,7 @@ endif()
 
 # setting nvcc arch flags
 caffe_select_nvcc_arch_flags(NVCC_FLAGS_EXTRA)
-list(APPEND CUDA_NVCC_FLAGS ${NVCC_FLAGS_EXTRA})
+list(APPEND CUDA_NVCC_FLAGS ${NVCC_FLAGS_EXTRA} )
 message(STATUS "Added CUDA NVCC flags for: ${NVCC_FLAGS_EXTRA_readable}")
 
 # Boost 1.55 workaround, see https://svn.boost.org/trac/boost/ticket/9392 or

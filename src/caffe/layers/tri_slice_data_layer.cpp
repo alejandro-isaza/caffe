@@ -18,7 +18,7 @@
 #include "json/json.hpp"
 
 namespace caffe {
-    
+
     auto kHeight = 3;
 
     template <typename Dtype>
@@ -133,7 +133,7 @@ namespace caffe {
             const auto fileNames = std::vector<std::string>{lines_[lines_id_].file1, lines_[lines_id_].file2, lines_[lines_id_].file3};
             const auto offsets = std::vector<int>{lines_[lines_id_].offset1 + shiftDistribution(prng), lines_[lines_id_].offset2 + shiftDistribution(prng), lines_[lines_id_].offset3 + shiftDistribution(prng)};
             const auto gain = std::exp(gainDistribution(prng));
-            
+
             Blob<Dtype> blob({1, 1, kHeight, width});
             auto data = blob.mutable_cpu_data();
 
@@ -148,7 +148,7 @@ namespace caffe {
             this->transformed_data_.set_cpu_data(prefetch_data + offset);
             this->data_transformer_->Transform(&blob, &(this->transformed_data_));
             trans_time += timer.MicroSeconds();
-            
+
             prefetch_label[item_id] = label;
             // go to the next iter
             lines_id_++;
@@ -173,13 +173,13 @@ namespace caffe {
         caffe_scal(size, gain, data);
 
         if (this->layer_param_.tri_slice_data_param().fft()) {
-            FastFourierTransform<Dtype> fft(size, this->layer_param_.tri_slice_data_param().fft_options());
+            FastFourierTransform_cpu<Dtype> fft(size, this->layer_param_.tri_slice_data_param().fft_options());
             fft.process(data, size);
         }
     }
 
-    
+
     INSTANTIATE_CLASS(TriSliceDataLayer);
     REGISTER_LAYER_CLASS(TriSliceData);
-    
+
 }  // namespace caffe
