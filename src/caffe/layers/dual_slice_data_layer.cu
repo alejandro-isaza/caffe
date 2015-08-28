@@ -8,17 +8,17 @@ template <typename Dtype>
 void DualSliceDataLayer<Dtype>::Forward_gpu(
     const vector<Blob<Dtype>*>& bottom, const vector<Blob<Dtype>*>& top) {
   // First, join the thread
-  JoinPrefetchThread();
+  this->JoinPrefetchThread();
   // Reshape to loaded data.
   top[0]->ReshapeLike(this->prefetch_data_);
   // Copy the data
-  caffe_copy(prefetch_data_.count(), prefetch_data_.gpu_data(),
+  caffe_copy(this->prefetch_data_.count(), this->prefetch_data_.gpu_data(),
       top[0]->mutable_gpu_data());
   if (this->output_labels_) {
     // Reshape to loaded labels.
     top[1]->ReshapeLike(prefetch_label_);
     // Copy the labels.
-    caffe_copy(prefetch_label_.count(), prefetch_label_.gpu_data(),
+    caffe_copy(this->prefetch_label_.count(), this->prefetch_label_.gpu_data(),
         top[1]->mutable_gpu_data());
   }
 
