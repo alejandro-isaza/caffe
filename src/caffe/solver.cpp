@@ -81,7 +81,7 @@ void Solver<Dtype>::InitTrainNet() {
   net_state.MergeFrom(param_.train_state());
   net_param.mutable_state()->CopyFrom(net_state);
   net_.reset(new Net<Dtype>(net_param));
-  
+
   if (param_.has_trained_layers()) {
     net_->CopyTrainedLayersFrom(param_.trained_layers());
   }
@@ -360,6 +360,7 @@ void Solver<Dtype>::Snapshot() {
   // For intermediate results, we will also dump the gradient values.
   net_->ToProto(&net_param, param_.snapshot_diff());
   string filename(param_.snapshot_prefix());
+  string pngFilename = filename;
   string model_filename, snapshot_filename;
   const int kBufferSize = 20;
   char iter_str_buffer[kBufferSize];
@@ -376,7 +377,7 @@ void Solver<Dtype>::Snapshot() {
   snapshot_filename = filename + ".solverstate";
   LOG(INFO) << "Snapshotting solver state to " << snapshot_filename;
   WriteProtoToBinaryFile(state, snapshot_filename.c_str());
-  drawPNG(filename, accuracies);
+  drawPNG(pngFilename, accuracies);
 }
 
 template <typename Dtype>
