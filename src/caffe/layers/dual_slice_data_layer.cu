@@ -16,7 +16,7 @@ void DualSliceDataLayer<Dtype>::Forward_gpu(
       top[0]->mutable_gpu_data());
   if (this->output_labels_) {
     // Reshape to loaded labels.
-    top[1]->ReshapeLike(prefetch_label_);
+    top[1]->ReshapeLike(this->prefetch_label_);
     // Copy the labels.
     caffe_copy(this->prefetch_label_.count(), this->prefetch_label_.gpu_data(),
         top[1]->mutable_gpu_data());
@@ -31,7 +31,7 @@ void DualSliceDataLayer<Dtype>::Forward_gpu(
   }
 
   // Start a new prefetch thread
-  CreatePrefetchThread();
+  this->CreatePrefetchThread();
 }
 
 template <typename Dtype>
