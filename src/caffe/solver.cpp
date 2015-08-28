@@ -434,6 +434,8 @@ void Solver<Dtype>::Snapshot() {
 template <typename Dtype>
 string Solver<Dtype>::SnapshotFilename(const string extension) {
   string filename(param_.snapshot_prefix());
+  string pngFilename = filename;
+  string model_filename, snapshot_filename;
   const int kBufferSize = 20;
   char iter_str_buffer[kBufferSize];
   snprintf(iter_str_buffer, kBufferSize, "_iter_%d", iter_);
