@@ -80,7 +80,7 @@ class BasePrefetchingDataLayer :
   // DataLayerSetUp to do special data layer setup for individual layer types.
   // This method may not be overridden.
   void LayerSetUp(const vector<Blob<Dtype>*>& bottom,
-      const vector<Blob<Dtype>*>& top) final;
+      const vector<Blob<Dtype>*>& top);
 
   virtual void Forward_cpu(const vector<Blob<Dtype>*>& bottom,
       const vector<Blob<Dtype>*>& top);
