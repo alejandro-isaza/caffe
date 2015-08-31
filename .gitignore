@@ -79,6 +79,10 @@ python/caffe/proto/
 include/caffe/proto
 cmake_build
 .cmake_build
+src/caffe/layers/disabled/
+src/caffe/util/disabled/
+tools/disabled/
+include/disabled/
 
 # Generated documentation
 docs/_site
