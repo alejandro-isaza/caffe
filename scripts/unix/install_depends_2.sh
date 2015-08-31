@@ -12,11 +12,11 @@ cd /usr/local/cuda-7.0
 sudo tar zxvf ~/cufft_patch_linux.tar.gz --keep-directory-symlink
 
 # cuDNN
-wget http://adgo.ca/cudnn-7.0-linux-x64-v3.0-rc.tar
-tar -zxf cudnn-7.0-linux-x64-v3.0-rc.tar
-cd cuda
-sudo cp lib*/* /usr/local/cuda/lib64/
-sudo cp include/cudnn.h /usr/local/cuda/include/
+wget http://adgo.ca/cudnn-6.5-linux-x64-v2.tar
+tar -xf cudnn-6.5-linux-x64-v2.tar
+cd cudnn-6.5-linux-x64-v2
+sudo cp lib* /usr/local/cuda/lib64/
+sudo cp cudnn.h /usr/local/cuda/include/
 
 # Install Aquila
 cd $WORKDIR
