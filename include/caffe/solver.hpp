@@ -91,12 +91,10 @@ class Solver {
   void Snapshot();
   string SnapshotFilename(const string extension);
   string SnapshotToBinaryProto();
-  string SnapshotToHDF5();
   // The test routine
   void TestAll();
   void Test(const int test_net_id = 0);
   virtual void SnapshotSolverState(const string& model_filename) = 0;
-  virtual void RestoreSolverStateFromHDF5(const string& state_file) = 0;
   virtual void RestoreSolverStateFromBinaryProto(const string& state_file) = 0;
   void DisplayOutputBlobs(const int net_id);
 
@@ -140,9 +138,6 @@ class WorkerSolver : public Solver<Dtype> {
   void RestoreSolverStateFromBinaryProto(const string& state_file) {
     LOG(FATAL) << "Should not be called on worker solver.";
   }
-  void RestoreSolverStateFromHDF5(const string& state_file) {
-    LOG(FATAL) << "Should not be called on worker solver.";
-  }
 };
 
 /**
@@ -169,8 +164,6 @@ class SGDSolver : public Solver<Dtype> {
   virtual void ClipGradients();
   virtual void SnapshotSolverState(const string& model_filename);
   virtual void SnapshotSolverStateToBinaryProto(const string& model_filename);
-  virtual void SnapshotSolverStateToHDF5(const string& model_filename);
-  virtual void RestoreSolverStateFromHDF5(const string& state_file);
   virtual void RestoreSolverStateFromBinaryProto(const string& state_file);
   // history maintains the historical momentum data.
   // update maintains update related data and is not needed in snapshots.
