@@ -193,7 +193,6 @@ void DualSliceDataLayer<Dtype>::Forward_cpu(
     auto data = top[0]->mutable_cpu_data() + (i * data_count);
     fetchFFTransformedData_cpu(data, sample_count);
     fetchFFTransformedData_cpu(data + sample_count, sample_count);
-    std::swap_ranges(data + (sample_count / 2), data + sample_count, data + sample_count);
   }
 
   // Start a new prefetch thread

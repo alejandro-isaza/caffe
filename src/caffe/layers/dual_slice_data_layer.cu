@@ -27,7 +27,6 @@ void DualSliceDataLayer<Dtype>::Forward_gpu(
     auto data = blob->mutable_gpu_data();
     fetchFFTransformedData_gpu(data, sample_count);
     fetchFFTransformedData_gpu(data + sample_count, sample_count);
-    std::swap_ranges(data + (sample_count / 2), data + sample_count, data + sample_count);
   }
 
   // Start a new prefetch thread
